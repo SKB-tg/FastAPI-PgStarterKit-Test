@@ -17,6 +17,7 @@ coverage==7.3.0
 cssselect==1.2.0
 cssutils==2.7.1
 dnspython==2.4.0
+docker-compose
 ecdsa==0.18.0
 email-validator==2.0.0.post2
 emails==0.6
