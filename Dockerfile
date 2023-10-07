@@ -14,4 +14,4 @@ EXPOSE 80
 
 ENV UVICORN_HOST=0.0.0.0 UVICORN_PORT=80 UVICORN_LOG_LEVEL=info
 
-RUN docker-compose -f ./docker-compose.yml up --build
+RUN docker-compose up
