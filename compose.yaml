@@ -10,8 +10,8 @@ services:
       - "4000:80"
     volumes:
       - .:/app
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     command: /bin/bash -c "/app/pre-start.sh && uvicorn app.main:app --host 0.0.0.0 --port 80 --reload"
 
   db:
@@ -32,8 +32,8 @@ services:
     container_name: pgadmin
     env_file:
       - .env
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     ports:
       - 5050:80
 
