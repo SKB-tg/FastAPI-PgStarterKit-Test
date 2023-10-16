@@ -46,7 +46,7 @@ class Settings(BaseSettings):
         db = info.data.get("POSTGRES_DB")
 
         if all([user, password, host, db]):
-            return f"postgresql://{user}:{password}@{host}/{db}"
+            return f"postgres://{user}:{password}@{host}/{db}"
         else:
             return None
 
