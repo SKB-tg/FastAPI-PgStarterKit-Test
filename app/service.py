@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from typing import Optional
 from celery import Celery
 from parser_job.parser_f import MyUniParser
 from dataclasses import dataclass
@@ -27,7 +28,7 @@ class ParserData:
 
 # @celery.task(name="tasks.scrape_data")
  # ************************************************
-async def parse_data_vacancy(data: ParserData):
+async def parse_data_vacancy(data: Optional[ParserData]):
 	# работать можно с различными списками
 	# url_list_p = [
 	# url,
