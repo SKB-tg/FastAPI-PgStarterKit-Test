@@ -19,7 +19,7 @@ def quere_new_vakamcy(
     """
     Test emails.
     """
-     await parse_data_vacancy(data=data)
+    await parse_data_vacancy(data=data)
     return {"msg": "Ok"}
 
 @router.get("/{info}")
