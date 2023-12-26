@@ -9,7 +9,7 @@ from app.api import deps
 router = APIRouter()
 
 
-@router.get("/", response_model=List[schemas.Item])
+@router.get("/", response_model=List[schemas.vakancy.Vakancy])
 def read_items(
     db: Session = Depends(deps.get_db),
     skip: int = 0,
@@ -28,7 +28,7 @@ def read_items(
     return items
 
 
-@router.post("/", response_model=schemas.Vakancy)
+@router.post("/", response_model=schemas.vakancy.Vakancy)
 def create_item(
     *,
     db: Session = Depends(deps.get_db),
@@ -42,7 +42,7 @@ def create_item(
     return vkancy
 
 
-@router.put("/{id}", response_model=schemas.Vacancy)
+@router.put("/{id}", response_model=schemas.vakancy.Vacancy)
 def update_item(
     *,
     db: Session = Depends(deps.get_db),
@@ -62,7 +62,7 @@ def update_item(
     return vakancy
 
 
-@router.get("/{id}", response_model=schemas.Vacancy)
+@router.get("/{id}", response_model=schemas.vakancy.Vacancy)
 def read_item(
     *,
     db: Session = Depends(deps.get_db),
@@ -80,7 +80,7 @@ def read_item(
     return vakancy
 
 
-@router.delete("/{id}", response_model=schemas.Vacancy)
+@router.delete("/{id}", response_model=schemas.vakancy.Vacancy)
 def delete_item(
     *,
     db: Session = Depends(deps.get_db),
