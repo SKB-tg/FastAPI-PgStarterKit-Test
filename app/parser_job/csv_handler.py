@@ -27,7 +27,7 @@ def CsvHandler_W(filename, data, f_creat=True):
         fnew='w'
 
     with open(filename, f'{fnew}', encoding='utf-8',newline='') as f:
-        writer=csv.writer(f,escapechar='',lineterminator='\n', delimiter=':')
+        writer=csv.writer(f, lineterminator='\n', delimiter=':')
         writer.writerow(Date)
         n=0
         for i in key_data:
