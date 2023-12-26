@@ -28,7 +28,7 @@ def read_items(
     return items
 
 
-@router.post("/", response_model=schemas.vakancy.Vakancy)
+@router.post("/", response_model=schemas.Vakancy)
 def create_item(
     *,
     db: Session = Depends(deps.get_db),
@@ -39,10 +39,10 @@ def create_item(
     Create new item.
     """
     vkancy = crud.vkancy.create_with_owner(db=db, obj_in=item_in, owner_id=current_user.id)
-    return vkancy
+    return vakancy
 
 
-@router.put("/{id}", response_model=schemas.vakancy.Vacancy)
+@router.put("/{id}", response_model=schemas.Vacancy)
 def update_item(
     *,
     db: Session = Depends(deps.get_db),
@@ -62,7 +62,7 @@ def update_item(
     return vakancy
 
 
-@router.get("/{id}", response_model=schemas.vakancy.Vacancy)
+@router.get("/{id}", response_model=schemas.Vacancy)
 def read_item(
     *,
     db: Session = Depends(deps.get_db),
@@ -80,7 +80,7 @@ def read_item(
     return vakancy
 
 
-@router.delete("/{id}", response_model=schemas.vakancy.Vacancy)
+@router.delete("/{id}", response_model=schemas.Vacancy)
 def delete_item(
     *,
     db: Session = Depends(deps.get_db),
