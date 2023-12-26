@@ -4,7 +4,7 @@ from celery import Celery
 from app.parser_job.parser_f import MyUniParser
 from dataclasses import dataclass
 from app import crud, models, schemas
-from app.settings import BOT_TOKEN, CHAT_ID_PARS
+from app.settings import settings
 
 app = FastAPI()
 
@@ -15,8 +15,8 @@ class ParserData:
 	page: int = 1
 	fd: int = 1
 	max_count_vacancy: int = 5
-	chat_id: int = CHAT_ID_PARS
-	bot_token = BOT_TOKEN 
+	chat_id: int = settings.CHAT_ID_PARS
+	bot_token = settings.BOT_TOKEN 
  #***************   Случай с Celery *************
 # создаем экземпляр Celery
 # celery = Celery(
