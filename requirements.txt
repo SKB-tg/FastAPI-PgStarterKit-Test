@@ -61,3 +61,4 @@ vine==5.0.0
 wcwidth==0.2.6
 beautifulsoup4==4.11.1
 html5lib==1.1
+undetected-chromedriver==3.5.4
