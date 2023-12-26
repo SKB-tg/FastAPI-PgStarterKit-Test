@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from typing import Optional
 from celery import Celery
-from parser_job.parser_f import MyUniParser
+from app.parser_job.parser_f import MyUniParser
 from dataclasses import dataclass
 from app import crud, models, schemas
 from app.settings import BOT_TOKEN, CHAT_ID_PARS
