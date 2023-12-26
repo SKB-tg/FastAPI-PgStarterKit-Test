@@ -35,7 +35,7 @@ class VakancyInDBBase(VakancyBase):
     price: int
     description_short: str
     description_full: str 
-    date_publikate: Date 
+    date_publikate: date 
 
 
 # Properties to return to client
