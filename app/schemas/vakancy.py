@@ -1,5 +1,5 @@
 from typing import Optional, Date
-
+from datetime import date
 from pydantic import ConfigDict, BaseModel
 
 
@@ -13,7 +13,7 @@ class VakancyBase(BaseModel):
     price: int = 100
     description_short: str = "--"
     description_full: str = "--"
-    date_publikate: Date = None
+    date_publikate: date = None
 
 # Properties to receive on item creation
 class VakancyCreate(VakancyBase):
