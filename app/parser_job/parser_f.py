@@ -11,8 +11,8 @@ from typing import Callable, Dict, Any, Awaitable, Union, List, Optional, Binary
 
 
 #import parser_job.headers
-from parser_job.csv_handler import CsvHandler_W
-from parser_job.u_utils import get_date_flag
+from app.parser_job.csv_handler import CsvHandler_W
+from app.parser_job.u_utils import get_date_flag
 
 
 class MyUniParser:
