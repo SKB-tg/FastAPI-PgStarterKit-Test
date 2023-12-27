@@ -13,7 +13,7 @@ class VakancyBase(BaseModel):
     price: int = 100
     description_short: str = "--"
     description_full: str = "--"
-    date_publikate: date = None
+    date_publikate: str = "--"
 
 # Properties to receive on item creation
 class VakancyCreate(VakancyBase):
@@ -35,7 +35,7 @@ class VakancyInDBBase(VakancyBase):
     price: int
     description_short: str
     description_full: str 
-    date_publikate: date 
+    date_publikate: str 
 
 
 # Properties to return to client
