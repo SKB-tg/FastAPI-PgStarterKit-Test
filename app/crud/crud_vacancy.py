@@ -1,4 +1,4 @@
-from typing import List
+from typing import Any, Dict, Generic, List, Optional, Type, TypeVar, Union
 
 from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session
@@ -30,5 +30,11 @@ class CRUDVakancy(CRUDBase[Vakancy, VakancyCreate, VakancyUpdate]):
             .all()
         )
 
+    def get(self, db: Session, col: Any) -> Union[Vakancy]:
+        vak = db.query(self.model).filter(self.model.id_vakancy == col).first()
+        if vak:
+            return vak
+        else:
+            return None
 
 vakancy = CRUDVakancy(Vakancy)
