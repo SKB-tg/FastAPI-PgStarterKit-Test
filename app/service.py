@@ -38,7 +38,7 @@ class ParserData:
 
 # @celery.task(name="tasks.scrape_data")
  # ************************************************
-def parse_data_vacancy(data: Optional[ParserData], db: Session = Depends(get_db)):
+def parse_data_vacancy(data: Optional[ParserData], db: Session = get_db():
 	# работать можно с различными списками
 	# url_list_p = [
 	# url,
