@@ -10,8 +10,6 @@ from app.db.base_class import Base
 
 
 class Vakancy(Base):
-	__tablename__ = "vakancy"
-
 	id = Column(Integer, primary_key=True, index=True)
 	id_vakancy = Column(Integer)
 	name = Column(String)
