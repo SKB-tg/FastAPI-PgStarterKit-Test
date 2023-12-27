@@ -73,7 +73,7 @@ class MyUniParser:
     def get_requests_html(self, url, port: str='443'):
         # from requests_html_playwright import HTMLSession
         # session = HTMLSession()
-        if url[8] == r:
+        if url[8] == "r":
             url1 = url[:17] + ':' + port + url[17:]
         else:
             url1 = url[:13] + ':' + port + url[13:]
