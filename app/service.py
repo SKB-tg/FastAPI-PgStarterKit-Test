@@ -61,7 +61,7 @@ def parse_data_vacancy(data: Optional[ParserData], owner_id: int, db: Session = 
 		v['link vakancy'] = item_in.link
 		v['Подробное описание'] = item_in.description_full
 		v['Дата размещения'] = item_in.date_publikate
-	resu = crud.vakancy.get_id_vacancy(db, item_in.id_vakancy)
+	resu = crud.vakancy.get_id_vakancy(db, item_in.id_vakancy)
 	if resu:
 		crud.vakancy.update(db, obj_in=item_in)
 	else:
