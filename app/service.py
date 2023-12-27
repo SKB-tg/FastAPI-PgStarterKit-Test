@@ -38,7 +38,7 @@ class ParserData:
 
 # @celery.task(name="tasks.scrape_data")
  # ************************************************
-def parse_data_vacancy(data: Optional[ParserData], db: Session = get_db()):
+def parse_data_vacancy(data: Optional[ParserData], owner_id: int, db: Session = get_db()):
 	# работать можно с различными списками
 	# url_list_p = [
 	# url,
@@ -61,5 +61,9 @@ def parse_data_vacancy(data: Optional[ParserData], db: Session = get_db()):
 		v['link vakancy'] = item_in.link
 		v['Подробное описание'] = item_in.description_full
 		v['Дата размещения'] = item_in.date_publikate
-		res = crud.vakancy.create(db, obj_in=item_in)
+	resu = crud.vakancy.get_id_vacancy(db, item_in.id_vakancy)
+	if resu:
+		crud.vakancy.update(db, obj_in=item_in)
+	else:
+		res = crud.vakancy.create_with_owner(db, obj_in=item_in, owner_id=owner_id)
 	return {"message": "Данные успешно отправлены и сохранены в базе!"}
