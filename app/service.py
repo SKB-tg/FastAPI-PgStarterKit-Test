@@ -1,14 +1,22 @@
-from fastapi import FastAPI
-from typing import Optional
+from fastapi import FastAPI, Depends
+from typing import Optional, Generator
 from celery import Celery
 from sqlalchemy.orm import Session
-
+from app.db.session import SessionLocal
 from app.parser_job.parser_f import MyUniParser
 from dataclasses import dataclass
 from app import crud, models, schemas
 from app.settings import settings
 
 app = FastAPI()
+
+def get_db() -> Generator:
+    try:
+        db = SessionLocal()
+        yield db
+    finally:
+        db.close()
+
 
 @dataclass
 class ParserData:
@@ -30,7 +38,7 @@ class ParserData:
 
 # @celery.task(name="tasks.scrape_data")
  # ************************************************
-def parse_data_vacancy(data: Optional[ParserData], db: Session):
+def parse_data_vacancy(data: Optional[ParserData], db: Session = Depends(get_db)):
 	# работать можно с различными списками
 	# url_list_p = [
 	# url,
