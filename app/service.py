@@ -63,7 +63,7 @@ def parse_data_vacancy(data: Optional[ParserData], owner_id: int, db: Session = 
 		v['Дата размещения'] = item_in.date_publikate
 	resu = crud.vakancy.get_id_vakancy(db, item_in.id_vakancy)
 	if resu:
-		crud.vakancy.update(db, obj_in=item_in)
+		crud.vakancy.update(db, db_obj=models.Vakancy, obj_in=item_in)
 	else:
 		res = crud.vakancy.create_with_owner(db, obj_in=item_in, owner_id=owner_id)
 	return {"message": "Данные успешно отправлены и сохранены в базе!"}
