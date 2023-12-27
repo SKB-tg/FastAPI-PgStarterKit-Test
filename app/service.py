@@ -13,7 +13,7 @@ app = FastAPI()
 def get_db() -> Session:
     try:
         db = SessionLocal()
-	return db
+        return db
     finally:
         db.close()
 
