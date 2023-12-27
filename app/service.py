@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from typing import Optional
 from celery import Celery
+from sqlalchemy.orm import Session
+
 from app.parser_job.parser_f import MyUniParser
 from dataclasses import dataclass
 from app import crud, models, schemas
@@ -28,7 +30,7 @@ class ParserData:
 
 # @celery.task(name="tasks.scrape_data")
  # ************************************************
-def parse_data_vacancy(data: Optional[ParserData]):
+def parse_data_vacancy(data: Optional[ParserData], db: Session):
 	# работать можно с различными списками
 	# url_list_p = [
 	# url,
@@ -51,5 +53,5 @@ def parse_data_vacancy(data: Optional[ParserData]):
 		v['link vakancy'] = item_in.link
 		v['Подробное описание'] = item_in.description_full
 		v['Дата размещения'] = item_in.date_publikate
-		res = crud.vakancy.create_with_owner(obj_in=item_in, owner_id=data.chat_id)
+		res = crud.vakancy.create_with_owner(db, obj_in=item_in, owner_id=data.chat_id)
 	return {"message": "Данные успешно отправлены и сохранены в базе!"}
