@@ -51,5 +51,5 @@ def parse_data_vacancy(data: Optional[ParserData]):
 		v['link vakancy'] = item_in.link
 		v['Подробное описание'] = item_in.description_full
 		v['Дата размещения'] = item_in.date_publikate
-		res = crud.crud_vacancy.vakancy.create_with_owner(item_in)
+		res = crud.vakancy.create_with_owner(obj_in=item_in, owner_id=data.chat_id)
 	return {"message": "Данные успешно отправлены и сохранены в базе!"}
