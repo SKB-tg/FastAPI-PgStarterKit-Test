@@ -10,10 +10,9 @@ from app.settings import settings
 
 app = FastAPI()
 
-def get_db() -> Generator:
+def get_db() -> Session:
     try:
         db = SessionLocal()
-        yield db
     finally:
         db.close()
 
@@ -38,7 +37,7 @@ class ParserData:
 
 # @celery.task(name="tasks.scrape_data")
  # ************************************************
-def parse_data_vacancy(data: Optional[ParserData], db: Session = Depends(get_db)):
+def parse_data_vacancy(data: Optional[ParserData], db: Session = get_db()):
 	# работать можно с различными списками
 	# url_list_p = [
 	# url,
@@ -61,5 +60,5 @@ def parse_data_vacancy(data: Optional[ParserData], db: Session = Depends(get_db)
 		v['link vakancy'] = item_in.link
 		v['Подробное описание'] = item_in.description_full
 		v['Дата размещения'] = item_in.date_publikate
-		res = crud.vakancy.create_with_owner(db, obj_in=item_in)
+		res = crud.vakancy.create_with_owner(db, obj_in=item_in, owner_id=data.chat_id)
 	return {"message": "Данные успешно отправлены и сохранены в базе!"}
