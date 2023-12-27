@@ -10,7 +10,7 @@ from app.db.base_class import Base
 
 
 class Vakancy(Base):
-	id = Column(Integer, primary_key=True, index=True)
+	id = Column(Integer, primary_key=True)
 	id_vakancy = Column(Integer)
 	name = Column(String)
 	kategory = Column(String)
@@ -20,3 +20,5 @@ class Vakancy(Base):
 	description_short = Column(String)
 	description_full = Column(Text)
 	date_publikate = Column(String)
+	owner_id = Column(Integer, ForeignKey("user.id"))
+	owner = relationship("User", back_populates="vakancies")
