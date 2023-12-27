@@ -27,6 +27,7 @@ class VakancyUpdate(VakancyBase):
 
 # Properties shared by models stored in DB
 class VakancyInDBBase(VakancyBase):
+    id: int
     id_vakancy: int
     name: str
     kategory: str
