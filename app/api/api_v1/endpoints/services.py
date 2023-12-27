@@ -19,7 +19,7 @@ def quere_new_vakamcy(
     """
     Test emails.
     """
-    parse_data_vacancy(data=data)
+    parse_data_vacancy(data=data, owner_id=current_user.id)
     return {"msg": "Ok"}
 
 @router.get("/{info}")
@@ -31,5 +31,5 @@ def get_new_vakamcy(
     info=chat_id&bot_token.
     """
     data: dict = {"chat_id": info.replace('&')[0], "bot_token": info.replace('&')[1]}
-    parse_data_vacancy(data=data)
+    parse_data_vacancy(data=data, owner_id=current_user.id)
     return {"msg": "Ok"}
