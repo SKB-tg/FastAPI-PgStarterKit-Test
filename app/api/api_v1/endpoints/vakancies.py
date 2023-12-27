@@ -38,7 +38,7 @@ def create_item(
     """
     Create new item.
     """
-    vakancy = crud.vkancy.create_with_owner(db=db, obj_in=item_in, owner_id=current_user.id)
+    vakancy = crud.vakancy.create_with_owner(db=db, obj_in=item_in, owner_id=current_user.id)
     return vakancy
 
 
