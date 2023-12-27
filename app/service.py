@@ -10,7 +10,7 @@ app = FastAPI()
 
 @dataclass
 class ParserData:
-	category: str = "Менеджер по продажам"
+	kategory: str = "Менеджер по продажам"
 	url: str = 'https://rabota.by/vacancies/menedzher_po_prodazham'
 	page: int = 1
 	fd: int = 1
