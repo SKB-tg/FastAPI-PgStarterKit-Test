@@ -29,7 +29,7 @@ def read_items(
 
 
 @router.post("/", response_model=schemas.Vakancy)
-def create_item(
+def create_item_v(
     *,
     db: Session = Depends(deps.get_db),
     item_in: schemas.vakancy.VakancyCreate,
@@ -38,7 +38,7 @@ def create_item(
     """
     Create new item.
     """
-    vakancy = crud.vakancy.create_with_owner(db=db, obj_in=item_in)
+    vakancy = crud.vakancy.create_with_owner(db=db, obj_in=item_in, owner_id=current_user.id)
     return vakancy
 
 
