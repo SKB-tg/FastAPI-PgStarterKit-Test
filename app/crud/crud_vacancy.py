@@ -30,7 +30,7 @@ class CRUDVakancy(CRUDBase[Vakancy, VakancyCreate, VakancyUpdate]):
             .all()
         )
 
-    def get(self, db: Session, col: Any) -> Union[Vakancy]:
+    def get_id_vakancy(self, db: Session, col: Any) -> Union[Vakancy]:
         vak = db.query(self.model).filter(self.model.id_vakancy == col).first()
         if vak:
             return vak
