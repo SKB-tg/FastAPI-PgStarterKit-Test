@@ -21,4 +21,4 @@ class Vakancy(Base):
 	price = Column(Integer, index=True)
 	description_short = Column(String, index=True)
 	description_full = Column(Text, index=True)
-	date_publikate = Column(Date, index=True)
+	date_publikate = Column(String, index=True)
