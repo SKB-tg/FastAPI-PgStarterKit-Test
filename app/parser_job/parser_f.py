@@ -155,7 +155,7 @@ class MyUniParser:
         CsvHandler_W(self.filename, data, f_creat=False)
 
     def send_message_to_telegram(self, chat_id, token, message_dict):
-        message_dict.pop('link vakancy')
+        message_dict.pop('link_vakancy')
         message_dict.pop("№")
         # Формируем текст сообщения из словаря
         message_text = "\n".join([f"{key}: {value}" for key, value in message_dict.items()])
