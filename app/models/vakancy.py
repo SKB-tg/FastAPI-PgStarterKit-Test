@@ -16,7 +16,7 @@ class Vakancy(Base):
 	kategory = Column(String)
 	link = Column(String)
 	company = Column(String)
-	price = Column(Integer)
+	price = Column(String)
 	description_short = Column(String)
 	description_full = Column(Text)
 	date_publikate = Column(String)
