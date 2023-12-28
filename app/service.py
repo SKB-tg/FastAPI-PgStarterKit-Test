@@ -52,15 +52,15 @@ def parse_data_vacancy(data: Optional[ParserData], owner_id: int, db: Session = 
 	list_vacancy = parser.parse_data(html, data.kategory, data.page, data.fd,
 	max_count=data.max_count_vacancy)
 	for v in list_vacancy:
-		v['ID вакансии'] = item_in.id_vakancy
-		v['категории'] = item_in.kategory
-		v['Наименование vakancy'] = item_in.name
-		v['Компания'] = item_in.company
-		v['Заработок'] = item_in.price 
-		v['Краткое описание'] = item_in.description_short
-		v['link vakancy'] = item_in.link
-		v['Подробное описание'] = item_in.description_full
-		v['Дата размещения'] = item_in.date_publikate
+		item_in.id_vakancy = v['ID вакансии']
+		item_in.kategory = v['категории']
+		item_in.name = v['Наименование vakancy']
+		item_in.company = v['Компания']
+		item_in.price = v['Заработок'] 
+		item_in.description_short = v['Краткое описание']
+		item_in.link = v['link vakancy']
+		item_in.description_full = v['Подробное описание']
+		item_in.date_publikate = v['Дата размещения']
 	resu = crud.vakancy.get_id_vakancy(db, item_in.id_vakancy)
 	if resu:
 		crud.vakancy.update(db, db_obj=resu, obj_in=item_in)
