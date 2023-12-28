@@ -3,7 +3,7 @@ from typing import Any, Dict, Generic, List, Optional, Type, TypeVar, Union
 from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session
 
-from app.crud.base import CRUDBase
+from app.crud.base import CRUDBase, ModelType
 from app.models.vakancy import Vakancy
 from app.schemas.vakancy import VakancyCreate, VakancyUpdate
 
@@ -30,11 +30,11 @@ class CRUDVakancy(CRUDBase[Vakancy, VakancyCreate, VakancyUpdate]):
             .all()
         )
 
-    def get_id_vakancy(self, db: Session, col: Any) -> Union[Vakancy]:
-        vak = db.query(self.model).filter(self.model.id_vakancy == col).first()
-        if vak:
-            return vak
-        else:
-            return None
+    def get_id_vakancy(self, db: Session, col: Any) -> Optional[ModelType]:
+        return db.query(self.model).filter(self.model.id_vakancy == col).first()
+        # if vak:
+        #     return vak
+        # else:
+        #     return None
 
 vakancy = CRUDVakancy(Vakancy)
