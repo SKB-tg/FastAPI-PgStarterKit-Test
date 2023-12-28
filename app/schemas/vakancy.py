@@ -10,7 +10,7 @@ class VakancyBase(BaseModel):
     kategory: str = "--"
     link: str = "--"
     company: str = "--"
-    price: int = 100
+    price: str = "100"
     description_short: str = "--"
     description_full: str = "--"
     date_publikate: str = "--"
@@ -33,7 +33,7 @@ class VakancyInDBBase(VakancyBase):
     kategory: str
     link: str
     company: str
-    price: int
+    price: str
     description_short: str
     description_full: str 
     date_publikate: str 
