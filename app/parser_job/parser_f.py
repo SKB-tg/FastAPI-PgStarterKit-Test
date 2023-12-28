@@ -139,14 +139,14 @@ class MyUniParser:
                     'Компания': hanter,
                     'Заработок': price, 
                     'Краткое описание': description,
-                    'link vakancy': link_vakancy,
+                    'link_vakancy': link_vakancy,
                     'Подробное описание': description_full[0],
                     'Дата размещения': description_full[1],
                 }
                 list_vacancy.append(payload)
                 self.send_message_to_telegram(self.chat_id, self.bot_token, payload)
                 #self.write_to_csv(payload)
-
+                payload['link_vakancy'] = link_vakancy
                 if len(list_vacancy) == max_count: return list_vacancy
         return  list_vacancy
 
