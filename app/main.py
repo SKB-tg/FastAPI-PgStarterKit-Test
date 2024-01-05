@@ -17,10 +17,10 @@ if settings.BACKEND_CORS_ORIGINS:
         allow_methods=["*"],
         allow_headers=["*"],
     )
-status_r = FastAPI()
+#status_r = FastAPI()
 #api_router.include_router(status_r, prefix="/status", responses= )
 
-@status_r.get("/status")
+@app.get("/status")
 def get_status(
 ):
     return {"msg": "Ok"}
