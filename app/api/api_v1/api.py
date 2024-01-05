@@ -6,7 +6,7 @@ api_router = APIRouter()
 status_r = APIRouter()
 api_router.include_router(status_r)
 
-@status_r.get("/status")
+@status_r.get("/status", status_code=200)
 def get_status(
 ):
     return {"msg": "Ok"}
