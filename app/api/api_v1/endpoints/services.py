@@ -33,3 +33,11 @@ def get_new_vakamcy(
     data: dict = {"chat_id": info.replace('&')[0], "bot_token": info.replace('&')[1]}
     parse_data_vacancy(data=data, owner_id=current_user.id)
     return {"msg": "Ok"}
+
+@router.get("/status")
+def get_status(
+) -> Any:
+    """
+    info=chat_id&bot_token.
+    """
+    return {"msg": "Ok"}
