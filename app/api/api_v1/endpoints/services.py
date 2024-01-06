@@ -17,7 +17,7 @@ def quere_new_vakamcy(
     current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
     data_in = ParserData(**data)
-    data_out = parse_data_vacancy(data=data, owner_id=current_user.id)
+    data_out = parse_data_vacancy(data=data_in, owner_id=current_user.id)
     return {"vakancy": data_out}
 
 @router.get("/{info}")
