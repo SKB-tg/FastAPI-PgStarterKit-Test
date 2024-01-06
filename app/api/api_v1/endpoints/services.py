@@ -16,9 +16,7 @@ def quere_new_vakamcy(
     data: dict,
     current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
-    """
-    Test emails.
-    """
+    data_in = ParserData(**data)
     data_out = parse_data_vacancy(data=data, owner_id=current_user.id)
     return {"vakancy": data_out}
 
