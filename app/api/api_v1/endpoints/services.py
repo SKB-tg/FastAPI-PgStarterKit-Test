@@ -18,7 +18,7 @@ def quere_new_vakamcy(
 ) -> Any:
     data_in = ParserData(**data)
     data_out = parse_data_vacancy(data=data_in, owner_id=current_user.id)
-    return {"vakancy": data_out}
+    return data_out
 
 @router.get("/{info}")
 def get_new_vakamcy(
