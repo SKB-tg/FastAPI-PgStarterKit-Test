@@ -71,7 +71,9 @@ def parse_data_vacancy(owner_id: int, data: Optional[ParserData] = parser_data_d
 		item_in.date_publikate = v['Дата размещения']
 	resu = crud.vakancy.get_id_vakancy(db, item_in.id_vakancy)
 	if resu:
-		crud.vakancy.update(db, db_obj=resu, obj_in=item_in)
+		resul = crud.vakancy.update(db, db_obj=resu, obj_in=item_in)
+		return resul
 	else:
 		res = crud.vakancy.create_with_owner(db, obj_in=item_in, owner_id=owner_id)
-		return {"message": "Данные успешно отправлены и сохранены в базе!"}
+		res.description_full = "--"
+		return res
