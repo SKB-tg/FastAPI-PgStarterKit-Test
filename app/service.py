@@ -75,5 +75,5 @@ def parse_data_vacancy(owner_id: int, data: Optional[ParserData] = parser_data_d
 		return resul
 	else:
 		res = crud.vakancy.create_with_owner(db, obj_in=item_in, owner_id=owner_id)
-		res.description_full = "--"
+		#res.description_full = "--"
 		return res
