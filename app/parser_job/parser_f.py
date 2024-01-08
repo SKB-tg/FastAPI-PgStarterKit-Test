@@ -158,7 +158,7 @@ class MyUniParser:
         message_dict.pop('link_vakancy')
         message_dict.pop("№")
         # Формируем текст сообщения из словаря
-        message_text = "\n".join([f"{key}: {value}" for key, value in message_dict.items()])
+        message_text = "\n".join([f"{key}:\\n {value}\\n" for key, value in message_dict.items()])
         message_text = f"Последние обновления по вакансиям\n\n" + message_text
         print(message_text, token, chat_id)
         # Отправляем запрос на API Telegram с помощью библиотеки requests
