@@ -75,9 +75,9 @@ class MyUniParser:
         # session = HTMLSession()
         print(url)
         if str(url)[8] == "r":
-            url1 = url[:17] + ':' + port + url[17:url.find('?')]
+            url1 = url[:17] + ':' + port + url[17:url.find('?')+1]
         else:
-            url1 = url[:13] + ':' + port + url[13:url.find('?')]
+            url1 = url[:13] + ':' + port + url[13:url.find('?')+1]
         try:
             # Send an HTTP request to the provided URL
             headers = {
