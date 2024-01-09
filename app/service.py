@@ -60,7 +60,7 @@ def parse_data_vacancy(owner_id: int, data: Optional[ParserData] = parser_data_d
 	list_vacancy = parser.parse_data(html, data.kategory, data.page, data.fd,
 	max_count=data.max_count_vacancy)
 	if list_vacancy is None:
-		return  None
+		return None
 	for v in list_vacancy:
 		item_in.id_vakancy = v['ID вакансии']
 		item_in.kategory = v['категории']
