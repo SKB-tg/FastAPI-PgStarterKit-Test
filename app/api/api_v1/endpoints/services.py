@@ -18,6 +18,8 @@ def quere_new_vakamcy(
 ) -> Any:
     #data_in = ParserData(**data)
     data_out = parse_data_vacancy(data=ParserData(**data), owner_id=current_user.id)
+    if data == None:
+        return {"msg": "None html"}
     return data_out
 
 @router.get("/{info}")
