@@ -195,7 +195,7 @@ class MyUniParser:
     @staticmethod
     @try_except
     def get_link(soup):
-        return soup.find('a', attrs={'class': "serp-item__title"})['href'].strip()
+        return soup.find('a', attrs={'class': "bloko-link"})['href'].strip()
 
     @staticmethod
     @try_except
