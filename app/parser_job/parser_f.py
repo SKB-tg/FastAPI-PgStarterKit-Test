@@ -115,7 +115,7 @@ class MyUniParser:
             return None
 
     def parse_data(self, markup, kategory: str, x: int, fd: int, max_count: int=2) -> List[Dict]:
-        if markup == None: return
+        if markup == None: return None
         soup = BeautifulSoup(markup, 'html5lib')
         item_home_page_vacancy = soup.find_all('div', attrs={'class': 'vacancy-serp-item__layout'})
         nom = 0 + 50*(x-1)
