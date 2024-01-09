@@ -70,9 +70,10 @@ class MyUniParser:
             print("Придется ожидать след возможости")
         return html
 
-    def get_requests_html(self, url, port: str='443'):
+    def get_requests_html(self, url: str, port: str='443'):
         # from requests_html_playwright import HTMLSession
         # session = HTMLSession()
+        print(url)
         if str(url)[8] == "r":
             url1 = url[:17] + ':' + port + url[17:]
         else:
