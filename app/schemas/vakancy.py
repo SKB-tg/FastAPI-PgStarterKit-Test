@@ -37,7 +37,7 @@ class VakancyInDBBase(VakancyBase):
     description_short: str
     description_full: str 
     date_publikate: str 
-    model_config = ConfigDict(from_attributes=False)
+    model_config = ConfigDict(from_attributes=True)
 
 # Properties to return to client
 class Vakancy(VakancyInDBBase):
