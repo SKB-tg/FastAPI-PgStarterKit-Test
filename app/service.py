@@ -75,7 +75,7 @@ def parse_data_vacancy(owner_id: int, data: Optional[ParserData] = parser_data_d
 		resu = crud.vakancy.get_id_vakancy(db, item_in.id_vakancy)
 		if resu:
 			#resul = crud.vakancy.update(db, db_obj=resu, obj_in=item_in)
-			print(77, resu.__dict__)
+			print(77, resu.price)
 			#resu = json.loads(json.dumps(resu))
 			return resu
 		else:
