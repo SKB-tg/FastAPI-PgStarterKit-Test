@@ -7,6 +7,7 @@ from app.parser_job.parser_f import MyUniParser
 from dataclasses import dataclass
 from app import crud, models, schemas
 from app.settings import settings
+import json
 
 app = FastAPI()
 
@@ -75,6 +76,7 @@ def parse_data_vacancy(owner_id: int, data: Optional[ParserData] = parser_data_d
 		if resu:
 			#resul = crud.vakancy.update(db, db_obj=resu, obj_in=item_in)
 			print(77, resu.__dict__)
+			resu = json.loads(json.dumps(resu))
 			return resu
 		else:
 			res = crud.vakancy.create_with_owner(db, obj_in=item_in, owner_id=owner_id)
