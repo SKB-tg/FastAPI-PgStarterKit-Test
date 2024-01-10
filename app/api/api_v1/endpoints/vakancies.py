@@ -97,3 +97,21 @@ def delete_item(
         raise HTTPException(status_code=400, detail="Not enough permissions")
     vakancy = crud.vakancy.remove(db=db, id=id)
     return vakancy
+
+
+@router.get("/{id_vakancy}", response_model=schemas.Vakancy)
+def read_vakancy_id(
+    *,
+    db: Session = Depends(deps.get_db),
+    id_vakancy: int,
+    current_user: models.User = Depends(deps.get_current_active_user),
+) -> Any:
+    """
+    Get item by ID.
+    """
+    vakancy = crud.vakancy.get(db=db, id=id_vakancy)
+    if not vakancy:
+        raise HTTPException(status_code=404, detail="Item not found")
+    if not crud.user.is_superuser(current_user) and (vakancy.owner_id != current_user.id):
+        raise HTTPException(status_code=400, detail="Not enough permissions")
+    return vakancy
