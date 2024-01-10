@@ -109,7 +109,7 @@ def read_vakancy_id(
     """
     Get item by ID.
     """
-    vakancy = crud.vakancy.get_id_vakancy(db=db, id=id_vakancy)
+    vakancy = crud.vakancy.get_id_vakancy(db=db, id_vakancy=id_vakancy)
     if not vakancy:
         raise HTTPException(status_code=404, detail="Item not found")
     if not crud.user.is_superuser(current_user) and (vakancy.owner_id != current_user.id):
