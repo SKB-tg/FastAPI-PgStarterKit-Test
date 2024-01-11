@@ -38,7 +38,7 @@ def read_items(
     return items
 
 
-@router.post("/", response_model=JSONResponse(schemas.Vakancy))
+@router.post("/")#, response_model=schemas.Vakancy)
 def create_item_v(
     *,
     db: Session = Depends(deps.get_db),
