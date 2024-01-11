@@ -20,7 +20,7 @@ def quere_new_vakamcy(
 ) -> Any:
     #data_in = ParserData(**data)
     data_out = parse_data_vacancy(db, data=ParserData(**data), owner_id=current_user.id)
-    print(data_out.__dict__)
+    print(data_out)
     if data == None:
         return {"msg": "None html"}
     return data_out
