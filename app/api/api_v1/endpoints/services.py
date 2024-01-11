@@ -1,6 +1,6 @@
 from typing import Any
 from fastapi.responses import (
-    JSONResponse)
+    PlainTextResponse)
 from fastapi import APIRouter, Depends
 #from pydantic.networks import EmailStr
 from sqlalchemy.orm import Session
@@ -13,7 +13,7 @@ from app.service import parse_data_vacancy, ParserData
 router = APIRouter()
 
 
-@router.post("/quere-new-vakamcy/") #response_model=JSONResponse)  #chemas.Vakancy)
+@router.post("/quere-new-vakamcy/", response_model=PlainTextResponse)  #chemas.Vakancy)
 def quere_new_vakamcy(
     data: dict,
     db: Session = Depends(deps.get_db),
