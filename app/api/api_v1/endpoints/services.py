@@ -13,7 +13,7 @@ from app.service import parse_data_vacancy, ParserData
 router = APIRouter()
 
 
-@router.post("/quere-new-vakamcy/", response_model=PlainTextResponse)  #chemas.Vakancy)
+@router.post("/quere-new-vakamcy/", response_class=PlainTextResponse)  #chemas.Vakancy)
 def quere_new_vakamcy(
     data: dict,
     db: Session = Depends(deps.get_db),
