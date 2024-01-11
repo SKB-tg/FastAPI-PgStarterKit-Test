@@ -35,7 +35,7 @@ def read_items(
         items = crud.vakancy.get_multi_by_owner(
             db=db, owner_id=current_user.id, skip=skip, limit=limit
         )
-    print(items.__dict__)
+    print(items[0].__dict__)
     return items
 
 
