@@ -2,7 +2,17 @@ from typing import Any, List
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-
+from fastapi.responses import (
+    FileResponse,
+    HTMLResponse,
+    JSONResponse,
+    ORJSONResponse,
+    PlainTextResponse,
+    RedirectResponse,
+    Response,
+    StreamingResponse,
+    UJSONResponse,
+)
 from app import crud, models, schemas
 from app.api import deps
 
@@ -28,7 +38,7 @@ def read_items(
     return items
 
 
-@router.post("/", response_model=schemas.Vakancy)
+@router.post("/", response_model=JSONResponse(schemas.Vakancy))
 def create_item_v(
     *,
     db: Session = Depends(deps.get_db),
