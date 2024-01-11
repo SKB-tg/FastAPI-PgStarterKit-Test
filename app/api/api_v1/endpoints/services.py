@@ -14,10 +14,11 @@ router = APIRouter()
 @router.post("/quere-new-vakamcy/", response_model=schemas.Vakancy)
 def quere_new_vakamcy(
     data: dict,
+    db: Session = Depends(deps.get_db),
     current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
     #data_in = ParserData(**data)
-    data_out = parse_data_vacancy(data=ParserData(**data), owner_id=current_user.id)
+    data_out = parse_data_vacancy(dp, data=ParserData(**data), owner_id=current_user.id)
     print(data_out.__dict__)
     if data == None:
         return {"msg": "None html"}
