@@ -16,7 +16,7 @@ class Settings:
     # ALGORITHM = getenv("ALGORITHM")
 
     CHAT_ID_PARS = getenv("CHAT_ID_PARS")
-    BOT_TOKEN = getenv("BOT_TOKEN")
+    BOT_TOKEN = str(getenv("BOT_TOKEN"))
     
     API_ID = getenv("API_ID")
     API_HASH = getenv("API_HASH")
