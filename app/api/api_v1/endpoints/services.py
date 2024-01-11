@@ -19,7 +19,7 @@ def quere_new_vakamcy(
     current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
     #data_in = ParserData(**data)
-    data_out = parse_data_vacancy(dp, data=ParserData(**data), owner_id=current_user.id)
+    data_out = parse_data_vacancy(db, data=ParserData(**data), owner_id=current_user.id)
     print(data_out.__dict__)
     if data == None:
         return {"msg": "None html"}
