@@ -11,7 +11,7 @@ from app.service import parse_data_vacancy, ParserData
 router = APIRouter()
 
 
-@router.post("/quere-new-vakamcy/", response_model=schemas.Vakancy, status_code=201)
+@router.post("/quere-new-vakamcy/", response_model=schemas.Vakancy)
 def quere_new_vakamcy(
     data: dict,
     current_user: models.User = Depends(deps.get_current_active_superuser),
