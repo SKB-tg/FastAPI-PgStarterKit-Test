@@ -58,7 +58,7 @@ def get_vacancy_col(
     """
     Update an item.
     """
-    item = crud.vakancy.get_col(db=db, col=col)
+    item = crud.vakancy.get_col(db=db, id_vakancy=col)
     if not item:
         raise HTTPException(status_code=404, detail="Item not found")
     if not crud.user.is_superuser(current_user) and (vakancy.owner_id != current_user.id):
