@@ -20,6 +20,7 @@ def quere_new_vakamcy(
     current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
     #data_in = ParserData(**data)
+
     data_out = parse_data_vacancy(db, data=ParserData(**data), owner_id=current_user.id)
     print(data_out)
     if data == None:
@@ -29,6 +30,7 @@ def quere_new_vakamcy(
 @router.get("/{info}")
 def get_vakamcy_info(
     info: str,
+    db: Session = Depends(deps.get_db),
     current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
     """
