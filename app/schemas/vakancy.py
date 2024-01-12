@@ -50,8 +50,9 @@ class Vakancy(VakancyInDBBase):
         return str(id_vakancy)
 
     @field_serializer("price")
-    def serialize_price(self, price: str, _info):
+    def serialize_price(self, price: str):
         price.replace("\u202f", " ")
+        price = "OOO"
         return price
 
 # Properties properties stored in DB
