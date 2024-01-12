@@ -78,7 +78,6 @@ def parse_data_vacancy(db: Session, owner_id: int, data: ParserData = parser_dat
 			print(77, resu.price)
 			item_out = crud.vakancy.convert_schemas_to_model(item_in)
 			item_out.link = "--"
-			item_out.description_full = "--"
 			item_out.price = "--"
 			item_out.name = "--"
 			return item_out
