@@ -58,3 +58,8 @@ class Vakancy(VakancyInDBBase):
 # Properties properties stored in DB
 class VakancyInDB(VakancyInDBBase):
     pass
+
+class VakancyExt(BaseModel):
+    id_vakancy: int
+    name: str
+    kategory: str
