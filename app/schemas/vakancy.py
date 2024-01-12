@@ -14,6 +14,14 @@ class VakancyBase(BaseModel):
     description_short: str = "--"
     description_full: str = "--"
     date_publikate: str = "--"
+    p: dict
+
+    @field_serializer('p')
+    def serialize_dict(values):
+        for key, value in values.items():
+            if isinstance(value, re.Pattern):
+                values[key] = value.pattern
+        return values
 
 # Properties to receive on item creation
 class VakancyCreate(VakancyBase):
