@@ -80,6 +80,7 @@ def parse_data_vacancy(db: Session, owner_id: int, data: ParserData = parser_dat
 			item_out.link = "--"
 			item_out.description_full = "--"
 			item_out.price = "--"
+			item_out.name = "--"
 			return item_out
 		else:
 			res = crud.vakancy.create_with_owner(db, obj_in=item_in)#, owner_id=owner_id)
