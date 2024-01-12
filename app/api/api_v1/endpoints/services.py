@@ -13,7 +13,7 @@ from app.service import parse_data_vacancy, ParserData
 router = APIRouter()
 
 
-@router.post("/quere-new-vakamcy/", response_model=schemas.Vakancy)
+@router.post("/quere-new-vakamcy/", response_model=schemas.VakancyExt)
 def quere_new_vakamcy(
     data: dict,
     db: Session = Depends(deps.get_db),
@@ -50,7 +50,7 @@ def get_status(
     """
     return {"msg": "Ok"}
 
-@router.get("/{col}", response_model=schemas.VakancyExt)
+@router.get("/{col}", response_model=schemas.Vakancy)
 def get_vacancy_col(
     *,
     db: Session = Depends(deps.get_db),
