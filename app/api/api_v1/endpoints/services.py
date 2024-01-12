@@ -27,18 +27,18 @@ def quere_new_vakamcy(
         return {"msg": "None html"}
     return data_out
 
-@router.get("/{info}")
-def get_vakamcy_info(
-    info: str,
-    db: Session = Depends(deps.get_db),
-    current_user: models.User = Depends(deps.get_current_active_superuser),
-) -> Any:
-    """
-    info=chat_id&bot_token.
-    """
-    data: dict = {"chat_id": info.replace('&', ",")[0], "bot_token": info.replace('&', ",")[1]}
-    parse_data_vacancy(db, data=data, owner_id=current_user.id)
-    return {"msg": "Ok"}
+# @router.get("/{info}")
+# def get_vakamcy_info(
+#     info: str,
+#     db: Session = Depends(deps.get_db),
+#     current_user: models.User = Depends(deps.get_current_active_superuser),
+# ) -> Any:
+#     """
+#     info=chat_id&bot_token.
+#     """
+#     data: dict = {"chat_id": info.replace('&', ",")[0], "bot_token": info.replace('&', ",")[1]}
+#     parse_data_vacancy(db, data=data, owner_id=current_user.id)
+#     return {"msg": "Ok"}
 
 @router.get("/status")
 def get_status(
