@@ -50,7 +50,7 @@ def get_status(
 def update_item(
     *,
     db: Session = Depends(deps.get_db),
-    col: Union[str, int],
+    col: int,
     current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
