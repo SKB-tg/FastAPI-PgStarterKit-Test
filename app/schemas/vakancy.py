@@ -43,14 +43,16 @@ class VakancyInDBBase(VakancyBase):
 # Properties to return to client
 class Vakancy(VakancyInDBBase):
     id_vakancy: int | str
+    price: str
+
     @field_serializer("id_vakancy")
     def serialize_message(self, id_vakancy: int | str, _info):
         return str(id_vakancy)
 
     @field_serializer("price")
     def serialize_price(self, price: str, _info):
-        price = price.replace("\u202f", " ")
-        return str(price)
+        price.replace("\u202f", " ")
+        return price
 
 # Properties properties stored in DB
 class VakancyInDB(VakancyInDBBase):
