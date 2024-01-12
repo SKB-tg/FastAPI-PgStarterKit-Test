@@ -27,7 +27,7 @@ def quere_new_vakamcy(
     return data_out
 
 @router.get("/{info}")
-def get_new_vakamcy(
+def get_vakamcy_info(
     info: str,
     current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
@@ -35,7 +35,7 @@ def get_new_vakamcy(
     info=chat_id&bot_token.
     """
     data: dict = {"chat_id": info.replace('&', ",")[0], "bot_token": info.replace('&', ",")[1]}
-    parse_data_vacancy(data=data, owner_id=current_user.id)
+    parse_data_vacancy(db, data=data, owner_id=current_user.id)
     return {"msg": "Ok"}
 
 @router.get("/status")
@@ -47,7 +47,7 @@ def get_status(
     return {"msg": "Ok"}
 
 @router.get("/{col}", response_model=schemas.Vakancy)
-def update_item(
+def get_vacancy_col(
     *,
     db: Session = Depends(deps.get_db),
     col: int,
