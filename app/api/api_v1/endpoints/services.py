@@ -50,7 +50,7 @@ def get_status(
     """
     return {"msg": "Ok"}
 
-@router.get("/{col}", response_model=schemas.Vakancy)
+@router.get("/{col}", response_model=schemas.VakancyExt)
 def get_vacancy_col(
     *,
     db: Session = Depends(deps.get_db),
