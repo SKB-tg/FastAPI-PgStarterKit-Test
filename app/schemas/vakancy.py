@@ -43,14 +43,14 @@ class VakancyInDBBase(VakancyBase):
 # Properties to return to client
 class Vakancy(VakancyInDBBase):
     pass
-    p: dict
+    # p: dict
 
-    @field_serializer('p')
-    def serialize_dict(values):
-        for key, value in values.items():
-            if isinstance(value, re.Pattern):
-                values[key] = value.pattern
-        return values
+    # @field_serializer('p')
+    # def serialize_dict(values):
+    #     for key, value in values.items():
+    #         if isinstance(value, re.Pattern):
+    #             values[key] = value.pattern
+    #     return values
 
 # Properties properties stored in DB
 class VakancyInDB(VakancyInDBBase):
