@@ -1,7 +1,7 @@
-from typing import Any
+from typing import Any, Union
 from fastapi.responses import (
     PlainTextResponse)
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 #from pydantic.networks import EmailStr
 from sqlalchemy.orm import Session
 
@@ -50,7 +50,7 @@ def get_status(
 def update_item(
     *,
     db: Session = Depends(deps.get_db),
-    id: int,
+    col: Union[str, int],
     current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
