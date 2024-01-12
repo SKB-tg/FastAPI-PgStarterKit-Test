@@ -64,3 +64,6 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         db.delete(obj)
         db.commit()
         return obj
+
+    def get_col(self, db: Session, col: Any) -> Optional[ModelType]:
+        return db.query(self.model).filter(self.model.col == col).first()
