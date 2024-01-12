@@ -1,7 +1,7 @@
 from typing import Any, Union
 from fastapi.responses import (
     PlainTextResponse)
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, exceptions
 #from pydantic.networks import EmailStr
 from sqlalchemy.orm import Session
 
