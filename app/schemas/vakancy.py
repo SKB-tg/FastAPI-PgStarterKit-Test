@@ -1,6 +1,7 @@
+import re
 from typing import Optional
 from datetime import date
-from pydantic import ConfigDict, BaseModel
+from pydantic import ConfigDict, BaseModel, field_serializer
 
 
 # Shared properties
@@ -14,14 +15,6 @@ class VakancyBase(BaseModel):
     description_short: str = "--"
     description_full: str = "--"
     date_publikate: str = "--"
-    p: dict
-
-    @field_serializer('p')
-    def serialize_dict(values):
-        for key, value in values.items():
-            if isinstance(value, re.Pattern):
-                values[key] = value.pattern
-        return values
 
 # Properties to receive on item creation
 class VakancyCreate(VakancyBase):
@@ -50,7 +43,14 @@ class VakancyInDBBase(VakancyBase):
 # Properties to return to client
 class Vakancy(VakancyInDBBase):
     pass
+    p: dict
 
+    @field_serializer('p')
+    def serialize_dict(values):
+        for key, value in values.items():
+            if isinstance(value, re.Pattern):
+                values[key] = value.pattern
+        return values
 
 # Properties properties stored in DB
 class VakancyInDB(VakancyInDBBase):
