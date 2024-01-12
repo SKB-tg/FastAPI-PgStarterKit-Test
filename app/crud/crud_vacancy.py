@@ -30,8 +30,8 @@ class CRUDVakancy(CRUDBase[Vakancy, VakancyCreate, VakancyUpdate]):
             .all()
         )
 
-    def get_id_vakancy(self, db: Session, id_vakancy: int) -> Vakancy:
-        return db.query(Vakancy).filter(Vakancy.id_vakancy == id_vakancy).first()
+    def get_id_vakancy(self, db: Session, id_vakancy: int)-> ModelType:
+        return db.query(self.model).filter(self.model.id_vakancy == id_vakancy).first()
 
     def convert_schemas_to_model(self, obj_in: VakancyCreate
     ) -> Vakancy:
