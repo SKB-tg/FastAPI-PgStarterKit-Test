@@ -45,3 +45,20 @@ def get_status(
     info=chat_id&bot_token.
     """
     return {"msg": "Ok"}
+
+@router.get("/{col}", response_model=schemas.Vakancy)
+def update_item(
+    *,
+    db: Session = Depends(deps.get_db),
+    id: int,
+    current_user: models.User = Depends(deps.get_current_active_user),
+) -> Any:
+    """
+    Update an item.
+    """
+    item = crud.vakancy.get_col(db=db, col=col)
+    if not item:
+        raise HTTPException(status_code=404, detail="Item not found")
+    if not crud.user.is_superuser(current_user) and (vakancy.owner_id != current_user.id):
+        raise HTTPException(status_code=400, detail="Not enough permissions")
+    return item
