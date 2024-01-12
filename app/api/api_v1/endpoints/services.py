@@ -22,9 +22,14 @@ def quere_new_vakamcy(
     #data_in = ParserData(**data)
 
     data_out = parse_data_vacancy(db, data=ParserData(**data), owner_id=current_user.id)
-    print(data_out)
-    if data == None:
-        return {"msg": "None html"}
+
+    try:
+        data_out = parse_data_vacancy(db, data=data_in, owner_id=current_user.id)
+        print(28, data_out)
+        if data == None:
+            return {"msg": "None html"}
+    except exceptions.ResponseValidationError as error:
+        return JSONResponse(status_code=error.status_code, content={"detail": error.detail})
     return data_out
 
 # @router.get("/{info}")
