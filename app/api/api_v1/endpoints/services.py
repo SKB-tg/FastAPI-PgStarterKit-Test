@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, HTTPException
 #from pydantic.networks import EmailStr
 from sqlalchemy.orm import Session
 
-from app import models, schemas
+from app import crud, models, schemas
 from app.api import deps
 
 from app.service import parse_data_vacancy, ParserData
