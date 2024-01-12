@@ -65,5 +65,5 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         db.commit()
         return obj
 
-    def get_col(self, db: Session, col: Any) -> Optional[ModelType]:
-        return db.query(self.model).filter(self.model.col == col).first()
+    def get_col(self, db: Session, id_vakancy: int) -> Optional[ModelType]:
+        return db.query(self.model).filter(self.model.id_vakancy == id_vakancy).first()
