@@ -34,7 +34,7 @@ class CRUDVakancy(CRUDBase[Vakancy, VakancyCreate, VakancyUpdate]):
         return db.query(self.model).filter(self.model.id_vakancy == id_vakancy).first()
 
     def convert_schemas_to_model(self, obj_in: VakancyCreate
-    ) -> Vakancy:
+    ) -> ModelType:
         obj_in_data = jsonable_encoder(obj_in)
         db_obj = self.model(**obj_in_data, owner_id=1)
         return db_obj
