@@ -39,11 +39,11 @@ def read_items(
     return items
 
 
-@router.post("/")#, response_model=schemas.Vakancy)
+@router.post("/", response_model=schemas.Vakancy)
 def create_item_v(
     *,
     db: Session = Depends(deps.get_db),
-    item_in: schemas.vakancy.VakancyCreate,
+    item_in: schemas.VakancyCreate,
     current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
