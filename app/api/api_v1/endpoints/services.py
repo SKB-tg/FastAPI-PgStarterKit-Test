@@ -22,7 +22,7 @@ async def quere_new_vakamcy(
     #data_in = ParserData(**data)
     try:
         data_out = parse_data_vacancy(db, data=ParserData(**data), owner_id=current_user.id)
-        print(28, data_out.__dict__)
+        #print(28, data_out.__dict__)
         if data == None:
             return {"msg": "None html"}
     except exceptions.ResponseValidationError as error:
