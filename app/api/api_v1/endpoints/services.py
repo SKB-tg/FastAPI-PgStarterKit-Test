@@ -27,7 +27,7 @@ async def quere_new_vakamcy(
             return {"msg": "None html"}
     except exceptions.ResponseValidationError as error:
         return JSONResponse(status_code=error.status_code, content={"detail": error.detail})
-    return data_out
+    return {"data": data_out}
 
 # @router.get("/{info}")
 # def get_vakamcy_info(
