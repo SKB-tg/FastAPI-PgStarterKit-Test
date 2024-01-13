@@ -77,9 +77,7 @@ def parse_data_vacancy(db: Session, owner_id: int, data: ParserData = parser_dat
 			#resul = crud.vakancy.update(db, db_obj=resu, obj_in=item_in)
 			print(77, resu.price)
 			item_out = crud.vakancy.convert_schemas_to_model(item_in)
-			item_out.link = "--"
-			item_out.price = "--"
-			item_out.name = "--"
+			item_out.description_short = item_in.description_full[:70] + "..."
 			return item_out
 		else:
 			res = crud.vakancy.create_with_owner(db, obj_in=item_in)#, owner_id=owner_id)
