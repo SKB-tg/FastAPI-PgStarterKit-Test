@@ -76,6 +76,7 @@ def parse_data_vacancy(db: Session, owner_id: int, data: ParserData = parser_dat
 		if resu:
 			#resul = crud.vakancy.update(db, db_obj=resu, obj_in=item_in)
 			print(77, resu.price)
+			resu.description_full = "--"
 			item_out = crud.vakancy.convert_schemas_to_model(item_in)
 			return resu
 		else:
