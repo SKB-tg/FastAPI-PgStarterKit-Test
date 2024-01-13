@@ -36,8 +36,8 @@ class CRUDVakancy(CRUDBase[Vakancy, VakancyCreate, VakancyUpdate]):
     def convert_schemas_to_model(self, obj_in: VakancyCreate
     ) -> ModelType:
         obj_in_data = jsonable_encoder(obj_in)
-        print(obj_in_data.__dict__)
+        print(obj_in_data)
         db_obj = self.model(**obj_in_data)
-        return db_obj
+        return obj_in_data
 
 vakancy = CRUDVakancy(Vakancy)
