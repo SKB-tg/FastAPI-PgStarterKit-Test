@@ -68,19 +68,17 @@ def parse_data_vacancy(db: Session, owner_id: int, data: ParserData = parser_dat
 		item_in.name = v['Наименование vakancy']
 		item_in.company = v['Компания']
 		item_in.price = v['Заработок'] 
-		item_in.description_short = v['Краткое описание']
 		item_in.link = v['link_vakancy']
 		item_in.description_full = v['Подробное описание']
+		item_in.description_short = item_in.description_full[:70] + "..."
 		item_in.date_publikate = v['Дата размещения']
 		resu = crud.vakancy.get_id_vakancy(db, item_in.id_vakancy)
 		if resu:
 			#resul = crud.vakancy.update(db, db_obj=resu, obj_in=item_in)
 			print(77, resu.price)
 			item_out = crud.vakancy.convert_schemas_to_model(item_in)
-			item_out.description_short = item_in.description_full[:70] + "..."
 			return item_out
 		else:
 			res = crud.vakancy.create_with_owner(db, obj_in=item_in)#, owner_id=owner_id)
-			#res.description_full = "--"
 			print(res)
 			return res
