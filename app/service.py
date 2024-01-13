@@ -47,7 +47,7 @@ parser_data_def = ParserData(
 
 # @celery.task(name="tasks.scrape_data")
  # ************************************************
-def parse_data_vacancy(db: Session, owner_id: int, data: ParserData = parser_data_def):# -> models.vakancy.Vakancy:
+def parse_data_vacancy(db: Session, owner_id: int, data: ParserData = parser_data_def) -> models.Vakancy:
 	# работать можно с различными списками
 	# url_list_p = [
 	# url,
