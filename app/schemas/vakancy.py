@@ -63,4 +63,7 @@ class VakancyExt(BaseModel):
     id_vakancy: int
     name: str
     kategory: str
-    description_full: str
+    company: str
+    price: str
+    description_short: str
+    date_publikate: str 
