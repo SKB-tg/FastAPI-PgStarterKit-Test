@@ -14,7 +14,7 @@ router = APIRouter()
 
 
 @router.post("/quere-new-vakamcy/", response_model=schemas.VakancyExt)
-def quere_new_vakamcy(
+async def quere_new_vakamcy(
     data: dict,
     db: Session = Depends(deps.get_db),
     current_user: models.User = Depends(deps.get_current_active_superuser),
