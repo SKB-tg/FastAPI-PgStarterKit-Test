@@ -60,4 +60,4 @@ class VakancyExt(BaseModel):
     company: str
     price: str
     description_short: str
-    date_publikate: str 
+    #date_publikate: str 
