@@ -191,7 +191,7 @@ class MyUniParser:
     @staticmethod
     @try_except
     def get_h3(soup):
-        return soup.find('a', attrs={'class': "serp-item__title"}).get_text()
+        return soup.find('span', attrs={'class': "serp-item__title"}).get_text()
 
     @staticmethod
     @try_except
