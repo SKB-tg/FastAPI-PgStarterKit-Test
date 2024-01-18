@@ -60,7 +60,7 @@ class VakancyExt(BaseModel):
     company: str
     price: str
     #description_short: str
-        @field_serializer("id_vakancy")
+    @field_serializer("id_vakancy")
     def serialize_message(self, id_vakancy: int | str, _info):
         return str(id_vakancy)
 
