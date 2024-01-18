@@ -61,3 +61,4 @@ class VakancyExt(BaseModel):
     #price: str
     #description_short: str
     #date_publikate: str 
+    model_config = ConfigDict(from_attributes=True)
