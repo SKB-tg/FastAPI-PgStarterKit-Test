@@ -58,7 +58,25 @@ class VakancyExt(BaseModel):
     name: str
     kategory: str
     company: str
-    #price: str
+    price: str
     #description_short: str
+        @field_serializer("id_vakancy")
+    def serialize_message(self, id_vakancy: int | str, _info):
+        return str(id_vakancy)
+
+    @field_serializer("name")
+    def serialize_message(self, name: str, _info):
+        return name
+    @field_serializer("kategory")
+    def serialize_message(self, kategory: str, _info):
+        return kategory
+    @field_serializer("company")
+    def serialize_message(self, company: str, _info):
+        return company
+    @field_serializer("price")
+    def serialize_price(self, price: str):
+        price.replace("\u202f", "%D0%")
+        price = "OOO"
+        return price
     #date_publikate: str 
     model_config = ConfigDict(from_attributes=True)
