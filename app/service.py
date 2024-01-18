@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from app import crud, models, schemas
 from app.settings import settings
 import json
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -19,8 +20,8 @@ def get_db() -> Session:
         db.close()
 
 
-@dataclass
-class ParserData:
+#@dataclass
+class ParserData(BaseModel):
 	kategory: str 
 	url: str #= 'https://rabota.by/vacancies/menedzher_po_prodazham'
 	page: int# = 1
