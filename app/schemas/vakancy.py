@@ -59,7 +59,9 @@ class VakancyExt(BaseModel):
     kategory: str
     company: str
     price: str
-    #description_short: str
+    description_short: str = "--"
+    date_publikate: str = "--"
+
 
     # @field_serializer("id_vakancy")
     # def serialize_message(self, id_vakancy: int | str, _info):
