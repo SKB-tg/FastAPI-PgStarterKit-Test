@@ -22,21 +22,21 @@ def get_db() -> Session:
 
 #@dataclass
 class ParserData(BaseModel):
-	kategory: str 
-	url: str #= 'https://rabota.by/vacancies/menedzher_po_prodazham'
-	page: int# = 1
-	fd: int# = 1
-	max_count_vacancy: int# = 5
-	chat_id: int# = settings.CHAT_ID_PARS
-	bot_token: str# = settings.BOT_TOKEN
+	kategory: str = "Менеджер по продажам"
+	url: str = 'https://rabota.by/vacancies/menedzher_po_prodazham'
+	page: int = 1
+	fd: int = 1
+	max_count_vacancy: int = 5
+	chat_id: int = settings.CHAT_ID_PARS
+	bot_token: str = settings.BOT_TOKEN
 
-parser_data_def = ParserData(
-	"Менеджер по продажам",
-	'https://rabota.by/vacancies/menedzher_po_prodazham',
-	1, 1, 5,
-	settings.CHAT_ID_PARS,
-	settings.BOT_TOKEN 
-)
+# parser_data_def = ParserData(
+# 	"Менеджер по продажам",
+# 	'https://rabota.by/vacancies/menedzher_po_prodazham',
+# 	1, 1, 5,
+# 	settings.CHAT_ID_PARS,
+# 	settings.BOT_TOKEN 
+# )
  #***************   Случай с Celery *************
 # создаем экземпляр Celery
 # celery = Celery(
@@ -48,7 +48,7 @@ parser_data_def = ParserData(
 
 # @celery.task(name="tasks.scrape_data")
  # ************************************************
-def parse_data_vacancy(db: Session, owner_id: int, data: ParserData = parser_data_def):# -> schemas.vakancy.VakancyExt:
+def parse_data_vacancy(db: Session, owner_id: int, data: ParserData ):# -> schemas.vakancy.VakancyExt:
 	# работать можно с различными списками
 	# url_list_p = [
 	# url,
