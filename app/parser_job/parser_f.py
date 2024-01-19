@@ -127,9 +127,9 @@ class MyUniParser:
             description_full = self.get_description_full(link_vakancy)
             date_vacancy = description_full[1] 
             if self.get_srok(date_vacancy) <= fd:
-                name_vakancy = self.get_h3(x)
-                price = self.get_price(x)
-                hanter = self.get_hanter(x)
+                name_vakancy = self.get_h3(x) or "--"
+                price = self.get_price(x) or "--"
+                hanter = self.get_hanter(x) or "--"
                 description = self.get_description(x)
                 id_v = self.get_id(link_vakancy)
                 nom += 1
