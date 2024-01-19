@@ -56,9 +56,9 @@ class VakancyInDB(VakancyInDBBase):
 class VakancyExt(BaseModel):
     id_vakancy: int | str
     name: str | None = "--"
-    kategory: str
-    company: str
-    price: str
+    kategory: str | None = "--"
+    company: str | None = "--"
+    price: str | None = "--"
     description_short: str = "--"
     date_publikate: str = "--"
 
