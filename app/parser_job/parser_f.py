@@ -155,8 +155,9 @@ class MyUniParser:
                     'Дата размещения': description_full[1],
                 }
                 list_vacancy.append(payload)
-                self.send_message_to_telegram(self.chat_id, self.bot_token, payload)
+                res = self.send_message_to_telegram(self.chat_id, self.bot_token, payload)
                 #self.write_to_csv(payload)
+                if res == False: max_count += 1
                 payload['link_vakancy'] = link_vakancy
                 if len(list_vacancy) == max_count: return list_vacancy
         #return  list_vacancy
