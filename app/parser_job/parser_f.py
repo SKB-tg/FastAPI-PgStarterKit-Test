@@ -13,6 +13,8 @@ from typing import Callable, Dict, Any, Awaitable, Union, List, Optional, Binary
 #import parser_job.headers
 from app.parser_job.csv_handler import CsvHandler_W
 from app.parser_job.u_utils import get_date_flag
+from app import crud
+from app.service import get_db
 
 
 class MyUniParser:
@@ -159,6 +161,10 @@ class MyUniParser:
     def send_message_to_telegram(self, chat_id, token, message_dict):
         message_dict.pop('link_vakancy')
         message_dict.pop("№")
+        #Проверяем на дублирование
+        res = crud.get_col(get_db, message_dict["ID вакансии"])
+        if not res:
+            return False
         # Формируем текст сообщения из словаря
         message_text = "\n".join([f"{key}:\n {value}\n" for key, value in message_dict.items()])
         message_text = f"Последние обновления по вакансиям\n\n" + message_text
