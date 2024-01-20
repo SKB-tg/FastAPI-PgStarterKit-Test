@@ -16,7 +16,6 @@ from sqlalchemy.orm import Session
 from app.parser_job.csv_handler import CsvHandler_W
 from app.parser_job.u_utils import get_date_flag
 from app import crud
-from app.service import get_db
 
 def get_db() -> Session:
     try:
