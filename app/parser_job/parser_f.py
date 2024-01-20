@@ -8,6 +8,8 @@ from pathlib import Path
 import undetected_chromedriver as uc
 from selenium.webdriver.chrome.service import Service
 from typing import Callable, Dict, Any, Awaitable, Union, List, Optional, BinaryIO, cast
+from app.db.session import SessionLocal
+from sqlalchemy.orm import Session
 
 
 #import parser_job.headers
@@ -16,6 +18,12 @@ from app.parser_job.u_utils import get_date_flag
 from app import crud
 from app.service import get_db
 
+def get_db() -> Session:
+    try:
+        db = SessionLocal()
+        return db
+    finally:
+        db.close()
 
 class MyUniParser:
     def __init__(self, driver_path: str = "parser_job/chromedriver",
