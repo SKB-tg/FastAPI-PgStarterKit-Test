@@ -167,7 +167,7 @@ class MyUniParser:
 
         CsvHandler_W(self.filename, data, f_creat=False)
 
-    def send_message_to_telegram(self, chat_id, token, message_dict,  db: Session=Depends(deps.get_db)):
+    def send_message_to_telegram(self, chat_id, token, message_dict,  db: Session=deps.get_db):
         message_dict.pop('link_vakancy')
         message_dict.pop("№")
         #Проверяем на дублирование
