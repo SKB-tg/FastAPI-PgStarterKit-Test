@@ -59,7 +59,7 @@ def parse_data_vacancy(db: Session, owner_id: int, data: ParserData ):# -> schem
 	item_in = schemas.VakancyCreate()
 	parser = MyUniParser(chat_id=data.chat_id, bot_token=data.bot_token)
 	html = parser.get_requests_html(data.url)
-	list_vacancy = parser.parse_data(html, data.kategory, data.page, data.fd,
+	list_vacancy = parser.parse_data(html, data.kategory, data.page, data.fd, db,
 	max_count=data.max_count_vacancy)
 	if list_vacancy is None:
 		return None
