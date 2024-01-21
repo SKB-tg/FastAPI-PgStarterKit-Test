@@ -10,7 +10,7 @@ from selenium.webdriver.chrome.service import Service
 from typing import Callable, Dict, Any, Awaitable, Union, List, Optional, BinaryIO, cast
 from fastapi import Depends
 from sqlalchemy.orm import Session
-from app.api import deps
+#from app.api import deps
 
 
 #import parser_job.headers
@@ -124,7 +124,7 @@ class MyUniParser:
             print(str(e))
             return None
 
-    def parse_data(self, markup, kategory: str, x: int, fd: int, max_count: int=2) -> List[Dict]:
+    def parse_data(self, markup, kategory: str, x: int, fd: int, db: Session, max_count: int=2) -> List[Dict]:
         if markup == None: return None
         soup = BeautifulSoup(markup, 'html5lib')
         item_home_page_vacancy = soup.find_all('div', attrs={'class': 'vacancy-serp-item__layout'})
@@ -156,7 +156,7 @@ class MyUniParser:
                     'Дата размещения': description_full[1],
                 }
                 list_vacancy.append(payload)
-                res = self.send_message_to_telegram(self.chat_id, self.bot_token, payload)
+                res = self.send_message_to_telegram(self.chat_id, self.bot_token, payload, db)
                 #self.write_to_csv(payload)
                 if res == False: max_count += 1
                 payload['link_vakancy'] = link_vakancy
@@ -167,7 +167,7 @@ class MyUniParser:
 
         CsvHandler_W(self.filename, data, f_creat=False)
 
-    def send_message_to_telegram(self, chat_id, token, message_dict,  db: Session=deps.get_db):
+    def send_message_to_telegram(self, chat_id, token, message_dict,  db):
         message_dict.pop('link_vakancy')
         message_dict.pop("№")
         #Проверяем на дублирование
