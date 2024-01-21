@@ -8,8 +8,9 @@ from pathlib import Path
 import undetected_chromedriver as uc
 from selenium.webdriver.chrome.service import Service
 from typing import Callable, Dict, Any, Awaitable, Union, List, Optional, BinaryIO, cast
-from app.db.session import SessionLocal
+from fastapi import Depends
 from sqlalchemy.orm import Session
+from app.api import deps
 
 
 #import parser_job.headers
@@ -17,11 +18,11 @@ from app.parser_job.csv_handler import CsvHandler_W
 from app.parser_job.u_utils import get_date_flag
 from app import crud
 
-def get_db() -> Session:
-    try:
-        db = SessionLocal()
-        return db
-    finally:
+# def get_db() -> Session:
+#     try:
+#         db = SessionLocal()
+#         return db
+#     finally:
         db.close()
 
 class MyUniParser:
@@ -166,11 +167,11 @@ class MyUniParser:
 
         CsvHandler_W(self.filename, data, f_creat=False)
 
-    def send_message_to_telegram(self, chat_id, token, message_dict):
+    def send_message_to_telegram(self, chat_id, token, message_dict,  db: Session=Depends(deps.get_db)):
         message_dict.pop('link_vakancy')
         message_dict.pop("№")
         #Проверяем на дублирование
-        res = crud.vakancy.get_col(get_db, message_dict["ID вакансии"])
+        res = crud.vakancy.get_col(db, message_dict["ID вакансии"])
         if res:
             return False
         # Формируем текст сообщения из словаря
