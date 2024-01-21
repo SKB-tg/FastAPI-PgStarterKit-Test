@@ -170,7 +170,7 @@ class MyUniParser:
         message_dict.pop('link_vakancy')
         message_dict.pop("№")
         #Проверяем на дублирование
-        res = crud.get_col(get_db, message_dict["ID вакансии"])
+        res = crud.vakancy.get_col(get_db, message_dict["ID вакансии"])
         if res:
             return False
         # Формируем текст сообщения из словаря
