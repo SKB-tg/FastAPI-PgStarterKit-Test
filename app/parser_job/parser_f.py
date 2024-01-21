@@ -23,7 +23,7 @@ from app import crud
 #         db = SessionLocal()
 #         return db
 #     finally:
-        db.close()
+        # db.close()
 
 class MyUniParser:
     def __init__(self, driver_path: str = "parser_job/chromedriver",
