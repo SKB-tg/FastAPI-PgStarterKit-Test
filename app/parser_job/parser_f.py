@@ -138,6 +138,7 @@ class MyUniParser:
             date_vacancy = description_full[1] 
             if self.get_srok(date_vacancy) <= fd:
                 name_vakancy = self.get_h3(x) or "--"
+                _kategory = self.get_kategory(x) or "--"
                 price = self.get_price(x) or "--"
                 hanter = self.get_hanter(x) or "--"
                 description = self.get_description(x)
@@ -146,7 +147,7 @@ class MyUniParser:
                 payload = {
                     '№': f'00{nom}',
                     'ID вакансии': id_v,
-                    'категории': kategory,
+                    'категории': _kategory,
                     'Наименование vakancy': name_vakancy,
                     'Компания': hanter,
                     'Заработок': price, 
@@ -202,6 +203,11 @@ class MyUniParser:
     def get_id(link):
         return str(link).split('vacancy/')[1].split('?')[0]
 
+    @staticmethod  
+    @try_except
+    def get_kategory(soup):
+        return soup.find('input', attrs={'id': "a11y-search-input"}).value
+        
     @staticmethod
     @try_except
     def get_h3(soup):
