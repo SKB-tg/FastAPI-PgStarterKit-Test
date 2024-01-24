@@ -24,7 +24,8 @@ async def quere_new_vakamcy(
     try:
         data_out = parse_data_vacancy(db, data=ParserData(**data), owner_id=current_user.id)
         #data_enc = jsonable_encoder(data_out)
-        print(28, data_out.kategory)
+        print(28, data_out.kategory, data_out.name, data_out.id_vakancy, data_out.company,
+            data_out.price, data_out.description_short)
         if data == None:
             return {"msg": "None html"}
     except exceptions.ResponseValidationError as error:
