@@ -59,8 +59,8 @@ class VakancyExt(BaseModel):
     kategory: str | None = "--"
     company: str | None = "--"
     price: str | None = "--"
-    description_short: str = "--"
-    date_publikate: str = "--"
+    description_short: str | None = "--"
+    date_publikate: str | None = "--"
 
 
     # @field_serializer("id_vakancy")
