@@ -206,7 +206,7 @@ class MyUniParser:
     @staticmethod  
     @try_except
     def get_kategory(soup):
-        return soup.find('input', attrs={'id': "a11y-search-input"}).value
+        return soup.find('h1', attrs={'class': "search-catalog-header"}).get_text()
         
     @staticmethod
     @try_except
