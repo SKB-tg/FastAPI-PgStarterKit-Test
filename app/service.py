@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Depends
-from typing import Optional, Generator
+from typing import Optional, Generator, List
 from celery import Celery
 from sqlalchemy.orm import Session
 from app.db.session import SessionLocal
@@ -47,7 +47,7 @@ parser_data_def = ParserData(
 
 # @celery.task(name="tasks.scrape_data")
  # ************************************************
-def parse_data_vacancy(db: Session, owner_id: int, data: ParserData = parser_data_def) -> list[schemas.vakancy.VakancyExt]:
+def parse_data_vacancy(db: Session, owner_id: int, data: ParserData = parser_data_def) -> List[schemas.vakancy.VakancyExt]:
 	# работать можно с различными списками
 	# url_list_p = [
 	# url+"?page=2&hhtmFrom=vacancy_search_list"
