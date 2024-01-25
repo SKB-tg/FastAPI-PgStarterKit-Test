@@ -138,7 +138,7 @@ class MyUniParser:
             date_vacancy = description_full[1] 
             if self.get_srok(date_vacancy) <= fd:
                 name_vakancy = self.get_h3(x) or "--"
-                _kategory = self.get_kategory(x) or "--"
+                _kategory = self.get_kategory(x) or kategory
                 price = self.get_price(x) or "--"
                 hanter = self.get_hanter(x) or "--"
                 description = self.get_description(x)
