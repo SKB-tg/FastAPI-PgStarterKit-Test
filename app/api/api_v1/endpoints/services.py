@@ -14,7 +14,7 @@ from app.service import parse_data_vacancy, ParserData
 router = APIRouter()
 
 
-@router.post("/quere-new-vakamcy/", response_model=schemas.VakancyExt)
+@router.post("/quere-new-vakamcy/", response_model=[schemas.VakancyExt])
 async def quere_new_vakamcy(
     data: dict,
     db: Session = Depends(deps.get_db),
@@ -24,7 +24,7 @@ async def quere_new_vakamcy(
     try:
         data_out = parse_data_vacancy(db, data=ParserData(**data), owner_id=current_user.id)
         #data_enc = jsonable_encoder(data_out)
-        print(28, data_out.kategory, data_out.name, data_out.id_vakancy, data_out.company,
+        #print(28, data_out.kategory, data_out.name, data_out.id_vakancy, data_out.company,
             data_out.price, data_out.description_short)
         if data == None:
             return {"msg": "None html"}
