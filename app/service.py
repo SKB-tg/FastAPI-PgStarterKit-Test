@@ -74,9 +74,12 @@ def parse_data_vacancy(db: Session, owner_id: int, data: ParserData ):# -> schem
 		item_in.description_short = item_in.description_full[:70] + "..."
 		item_in.date_publikate = v['Дата размещения']
 		resu = crud.vakancy.get_id_vakancy(db, item_in.id_vakancy)
+		print(76,item_in)
+		print(78, resu)
+
 		if resu:
 			#resul = crud.vakancy.update(db, db_obj=resu, obj_in=item_in)
-			print(77, resu.price)
+			#print(77, resu.price)
 			resu.description_full = "--"
 			item_out = crud.vakancy.convert_schemas_to_model(item_in)
 			return resu
