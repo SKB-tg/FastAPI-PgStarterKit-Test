@@ -1,4 +1,4 @@
-from typing import Any, Union
+from typing import Any, Union, List
 from fastapi.responses import (
     PlainTextResponse)
 from fastapi import APIRouter, Depends, HTTPException, exceptions
@@ -14,7 +14,7 @@ from app.service import parse_data_vacancy, ParserData
 router = APIRouter()
 
 
-@router.post("/quere-new-vakamcy/", response_model=[schemas.VakancyExt])
+@router.post("/quere-new-vakamcy/", response_model=List[schemas.VakancyExt])
 async def quere_new_vakamcy(
     data: dict,
     db: Session = Depends(deps.get_db),
