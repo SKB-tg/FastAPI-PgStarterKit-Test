@@ -183,7 +183,7 @@ class MyUniParser:
         payload = {"chat_id": chat_id, "text": message_text}
         response = requests.post(url, data=payload)
         data1 = response.json()
-        print(186, data["result"][0]['message'])
+        print(186, data1["result"][0]['message'])
         # Проверяем статус код ответа и возвращаем результат
         if response.status_code == 200:
             return True
