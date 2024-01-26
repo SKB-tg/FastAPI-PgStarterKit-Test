@@ -182,7 +182,7 @@ class MyUniParser:
         url = f"https://api.telegram.org/bot{token}/sendmessage"
         payload = {"chat_id": chat_id, "text": message_text}
         response = requests.post(url, data=payload)
-        print(json.loads(response.text)["data"])
+        print(186, json.loads(response.text)["data"])
         # Проверяем статус код ответа и возвращаем результат
         if response.status_code == 200:
             return True
