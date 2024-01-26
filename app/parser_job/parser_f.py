@@ -160,6 +160,7 @@ class MyUniParser:
                 res = self.send_message_to_telegram(self.chat_id, self.bot_token, payload, db)
                 #self.write_to_csv(payload)
                 payload['link_vakancy'] = link_vakancy
+                payload['message_id'] = res
                 if len(list_vacancy) == max_count: return list_vacancy
         #return  list_vacancy
 
@@ -182,11 +183,11 @@ class MyUniParser:
         url = f"https://api.telegram.org/bot{token}/sendmessage"
         payload = {"chat_id": chat_id, "text": message_text}
         response = requests.post(url, data=payload)
-        data1 = json.loads(response.text)
+        data1 = json.loads(response.text)['result']
         print(186, data1)
         # Проверяем статус код ответа и возвращаем результат
         if response.status_code == 200:
-            return True
+            return data1['message_id']
         else:
             return False
 
