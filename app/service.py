@@ -71,7 +71,9 @@ def parse_data_vacancy(db: Session, owner_id: int, data: ParserData = parser_dat
 		item_in.date_publikate = v['Дата размещения']
 		resu = crud.vakancy.get_id_vakancy(db, item_in.id_vakancy)
 		print(76,item_in)
-		#print(78, resu.__dict__)
+		item_in.message_id = v['message_id'] 
+
+		print(78, resu.__dict__)
 
 
 		if resu:
