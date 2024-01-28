@@ -178,7 +178,7 @@ class MyUniParser:
         res = crud.vakancy.get_col(db, message_dict["ID вакансии"])
         if res:
             print(177, res.__getattribute__("price"))    
-            return False
+            return 1
         # Формируем текст сообщения из словаря
         message_text = "\n".join([f"{key}:\n {value}\n" for key, value in message_dict.items()])
         message_text = f"Последние обновления по вакансиям\n\n" + message_text
@@ -194,7 +194,7 @@ class MyUniParser:
                 return data1['message_id']
         except Exception as e:
             print(e)
-            return False
+            return 1
         # Проверяем статус код ответа и возвращаем результат
 
 
