@@ -136,7 +136,7 @@ class MyUniParser:
             payload = {}
             link_vakancy = self.get_link(x)
             description_full = self.get_description_full(link_vakancy)
-            if (self.get_srok(description_full[1]) <= fd) & (self.get_srok(description_full[0]) != 0):
+            if (self.get_srok(description_full[1]) <= fd) & (self.get_srok(description_full[1]) != 0):
                 name_vakancy = self.get_h3(x) or "--"
                 _kategory = self.get_kategory(x) or kategory
                 price = self.get_price(x) or "--"
