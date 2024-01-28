@@ -245,7 +245,7 @@ class MyUniParser:
 
     @staticmethod
     def get_srok(date_str_in):
-        print(date_str_in)
+        print(248, date_str_in)
         if date_str_in == "--": return 0
         p1 = date_str_in.split(" ")
         p = [ i[1] for i in [("январь", 1), ("февраль", 2), ("март", 3), ("апрель", 4), ("октябрь", 10), ("ноябрь", 11), ("декабрь", 12)] if (i[0][:-2] == p1[1][:-2])]
