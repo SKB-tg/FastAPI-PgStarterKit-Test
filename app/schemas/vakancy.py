@@ -54,7 +54,7 @@ class VakancyInDB(VakancyInDBBase):
     pass
 
 class VakancyExt(BaseModel):
-    id_vakancy: int | str
+    id_vakancy: int | str = 1
     name: str | None = "--"
     kategory: str | None = "--"
     company: str | None = "--"
