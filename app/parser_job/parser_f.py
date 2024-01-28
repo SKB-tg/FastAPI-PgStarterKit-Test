@@ -186,14 +186,18 @@ class MyUniParser:
         # Отправляем запрос на API Telegram с помощью библиотеки requests
         url = f"https://api.telegram.org/bot{token}/sendmessage"
         payload = {"chat_id": chat_id, "text": message_text}
-        response = requests.post(url, data=payload)
-        data1 = json.loads(response.text)['result']
-        print(186, data1)
-        # Проверяем статус код ответа и возвращаем результат
-        if response.status_code == 200:
-            return data1['message_id']
-        else:
+        try:
+            response = requests.post(url, data=payload)
+            data1 = json.loads(response.text)['result']
+            print(186, data1)
+            if response.status_code == 200:
+                return data1['message_id']
+        except Exception as e:
+            print(e)
             return False
+        # Проверяем статус код ответа и возвращаем результат
+
+
 
     def try_except(func):
         def wrapper(*args, **kwargs):
