@@ -142,6 +142,7 @@ class MyUniParser:
                 price = self.get_price(x) or "--"
                 hanter = self.get_hanter(x) or "--"
                 description = self.get_description(x)
+                description_full_out = description_full[0][:-444] if sys.getsizeof(description_full[0]) < 7000 else description_full[0][:7000]
                 id_v = self.get_id(link_vakancy)
                 nom += 1
                 payload = {
@@ -153,19 +154,17 @@ class MyUniParser:
                     'Заработок': price, 
                     'Краткое описание': description,
                     'link_vakancy': link_vakancy,
-                    'Подробное описание': description_full[0][:-444],
+                    'Подробное описание': description_full_out,
                     'Дата размещения': description_full[1],
                 }
-                if sys.getsizeof(description_full[0]) > 6000:
-                    print(160, sys.getsizeof(description_full[0]))
-                else:
-                    print(163, sys.getsizeof(description_full[0]))
-                    list_vacancy.append(payload)
-                    res = self.send_message_to_telegram(self.chat_id, self.bot_token, payload, db)
-                    #self.write_to_csv(payload)
-                    payload['link_vakancy'] = link_vakancy
-                    payload['message_id'] = res
-                    if len(list_vacancy) == max_count: return list_vacancy
+
+                print(163, sys.getsizeof(description_full[0]))
+                list_vacancy.append(payload)
+                res = self.send_message_to_telegram(self.chat_id, self.bot_token, payload, db)
+                #self.write_to_csv(payload)
+                payload['link_vakancy'] = link_vakancy
+                payload['message_id'] = res
+                if len(list_vacancy) == max_count: return list_vacancy
         #return  list_vacancy
 
     def write_to_csv(self, data):        #print (data)
@@ -245,7 +244,6 @@ class MyUniParser:
 
     @staticmethod
     def get_srok(date_str_in):
-        print(248, date_str_in)
         if date_str_in == "--": return 0
         p1 = date_str_in.split(" ")
         p = [ i[1] for i in [("январь", 1), ("февраль", 2), ("март", 3), ("апрель", 4), ("октябрь", 10), ("ноябрь", 11), ("декабрь", 12)] if (i[0][:-2] == p1[1][:-2])]
