@@ -16,8 +16,30 @@ from urllib.parse import parse_qs, parse_qsl
 
 # async def empty_send(message: Message) -> typing.NoReturn:
 #     raise RuntimeError("Send channel has not been made available")
+def str_for_dict(str) -> dict:
+    ad=str.replace('{', "").replace('}', "").split(',')
+    ad1={i.split(":")[0].replace("'", ''):i.split(":")[1].replace("'", '')[1:] for i in ad}
+    return ad1
+#***************************************************
+#----------------field_serializerВы также можете использовать :
 
+import re
+from pydantic import BaseModel, field_serializer
 
+class MyModel(BaseModel):
+    p: dict
+
+    @field_serializer('p')
+    def serialize_dict(values):
+        for key, value in values.items():
+            if isinstance(value, re.Pattern):
+                values[key] = value.pattern
+        return values
+
+a = MyModel(p={"pattern": re.compile("asd")})
+
+print(a.model_dump_json())
+#***************************************************
 from datetime import datetime, timedelta
 
 def get_date_flag(date_str):
@@ -28,13 +50,13 @@ def get_date_flag(date_str):
     date = datetime.strptime(date_str, '%Y-%m-%d').date()
 
     if date == today:
-        return 0 #'сегодня'
+        return 1 #'сегодня'
     elif date == yesterday:
-        return 1 #'вчера'
+        return 2 #'вчера'
     elif date == day_before_yesterday:
-        return 2 #'позавчера'
+        return 3 #'позавчера'
     else:
-        return 3 #'другой день'
+        return 4 #'другой день'
 
 #*************************************************************************
 class TgUserCreate(object):
