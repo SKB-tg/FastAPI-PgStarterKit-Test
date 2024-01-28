@@ -173,7 +173,7 @@ class MyUniParser:
         message_dict.pop("№")
         #Проверяем на дублирование
         res = crud.vakancy.get_col(db, message_dict["ID вакансии"])
-        if res:
+        if res.id_vakancy:
             print(177, res)    
             return False
         # Формируем текст сообщения из словаря
