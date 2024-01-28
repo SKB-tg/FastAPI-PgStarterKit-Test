@@ -157,7 +157,10 @@ class MyUniParser:
                     'Подробное описание': description_full[0],
                     'Дата размещения': description_full[1],
                 }
-                if sys.getsizeof(description_full[0]) < 2000:
+                if sys.getsizeof(description_full[0]) > 3000:
+                    pass
+                else:
+                    print(163, sys.getsizeof(description_full[0]))
                     list_vacancy.append(payload)
                     res = self.send_message_to_telegram(self.chat_id, self.bot_token, payload, db)
                     #self.write_to_csv(payload)
