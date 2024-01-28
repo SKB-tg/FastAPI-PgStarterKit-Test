@@ -158,7 +158,7 @@ class MyUniParser:
                     'Дата размещения': description_full[1],
                 }
                 if sys.getsizeof(description_full[0]) > 3000:
-                    pass
+                    print(160, sys.getsizeof(description_full[0]))
                 else:
                     print(163, sys.getsizeof(description_full[0]))
                     list_vacancy.append(payload)
@@ -179,7 +179,7 @@ class MyUniParser:
         #Проверяем на дублирование
         res = crud.vakancy.get_col(db, message_dict["ID вакансии"])
         if res.id_vakancy:
-            print(177, res)    
+            print(177, dict(**res)['id_vakancy'])    
             return False
         # Формируем текст сообщения из словаря
         message_text = "\n".join([f"{key}:\n {value}\n" for key, value in message_dict.items()])
