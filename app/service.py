@@ -73,7 +73,7 @@ def parse_data_vacancy(db: Session, owner_id: int, data: ParserData = parser_dat
 		print(76,item_in)
 		message_id = v['message_id'] 
 
-		print(78, resu.__dict__)
+		#print(78, resu.__dict__)
 
 
 		if resu:
