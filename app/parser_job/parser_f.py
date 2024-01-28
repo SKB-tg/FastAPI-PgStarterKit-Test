@@ -1,5 +1,6 @@
 import re
 import os.path
+import sys
 import json
 import time
 import requests, lxml
@@ -136,7 +137,7 @@ class MyUniParser:
             link_vakancy = self.get_link(x)
             description_full = self.get_description_full(link_vakancy)
             date_vacancy = description_full[1] 
-            if self.get_srok(date_vacancy) <= fd:
+            if (self.get_srok(date_vacancy) <= fd) & (self.get_srok(date_vacancy) != 0):
                 name_vakancy = self.get_h3(x) or "--"
                 _kategory = self.get_kategory(x) or kategory
                 price = self.get_price(x) or "--"
@@ -156,12 +157,13 @@ class MyUniParser:
                     'Подробное описание': description_full[0],
                     'Дата размещения': description_full[1],
                 }
-                list_vacancy.append(payload)
-                res = self.send_message_to_telegram(self.chat_id, self.bot_token, payload, db)
-                #self.write_to_csv(payload)
-                payload['link_vakancy'] = link_vakancy
-                payload['message_id'] = res
-                if len(list_vacancy) == max_count: return list_vacancy
+                if sys.getsizeof(description_full[0]) < 2000:
+                    list_vacancy.append(payload)
+                    res = self.send_message_to_telegram(self.chat_id, self.bot_token, payload, db)
+                    #self.write_to_csv(payload)
+                    payload['link_vakancy'] = link_vakancy
+                    payload['message_id'] = res
+                    if len(list_vacancy) == max_count: return list_vacancy
         #return  list_vacancy
 
     def write_to_csv(self, data):        #print (data)
@@ -174,7 +176,7 @@ class MyUniParser:
         #Проверяем на дублирование
         res = crud.vakancy.get_col(db, message_dict["ID вакансии"])
         if res.id_vakancy:
-            print(177, res.id_vakancy)    
+            print(177, res)    
             return False
         # Формируем текст сообщения из словаря
         message_text = "\n".join([f"{key}:\n {value}\n" for key, value in message_dict.items()])
@@ -243,8 +245,7 @@ class MyUniParser:
     def get_srok(date_str_in):
         if date_str_in == "--": return 0
         p1 = date_str_in.split(" ")
-        p = [ i[1] for i in [("январь", 1), ("февраль", 2), ("март", 3), ("апрель", 4),
-        ("октябрь", 10), ("ноябрь", 11), ("декабрь", 12)] if (i[0][:-2] == p1[1][:-2])]
+        p = [ i[1] for i in [("январь", 1), ("февраль", 2), ("март", 3), ("апрель", 4), ("октябрь", 10), ("ноябрь", 11), ("декабрь", 12)] if (i[0][:-2] == p1[1][:-2])]
         date_str=f"{p1[2]}-{p[0]}-{p1[0]}"
         if date_str_in == "NON":
             return 0
