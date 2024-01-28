@@ -136,8 +136,7 @@ class MyUniParser:
             payload = {}
             link_vakancy = self.get_link(x)
             description_full = self.get_description_full(link_vakancy)
-            date_vacancy = description_full[1] 
-            if (self.get_srok(date_vacancy) <= fd) & (self.get_srok(date_vacancy) != 0):
+            if (self.get_srok(description_full[0]) <= fd) & (self.get_srok(description_full[0]) != 0):
                 name_vakancy = self.get_h3(x) or "--"
                 _kategory = self.get_kategory(x) or kategory
                 price = self.get_price(x) or "--"
@@ -154,10 +153,10 @@ class MyUniParser:
                     'Заработок': price, 
                     'Краткое описание': description,
                     'link_vakancy': link_vakancy,
-                    'Подробное описание': description_full[0],
+                    'Подробное описание': description_full[0][:-444],
                     'Дата размещения': description_full[1],
                 }
-                if sys.getsizeof(description_full[0]) > 3000:
+                if sys.getsizeof(description_full[0]) > 6000:
                     print(160, sys.getsizeof(description_full[0]))
                 else:
                     print(163, sys.getsizeof(description_full[0]))
@@ -179,7 +178,7 @@ class MyUniParser:
         #Проверяем на дублирование
         res = crud.vakancy.get_col(db, message_dict["ID вакансии"])
         if res:
-            print(177, res.__dict__)    
+            print(177, json.loads(res))    
             return False
         # Формируем текст сообщения из словаря
         message_text = "\n".join([f"{key}:\n {value}\n" for key, value in message_dict.items()])
