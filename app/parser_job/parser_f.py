@@ -136,7 +136,8 @@ class MyUniParser:
             payload = {}
             link_vakancy = self.get_link(x)
             description_full = self.get_description_full(link_vakancy)
-            if (self.get_srok(description_full[1]) <= fd) & (self.get_srok(description_full[1]) != 0):
+            day_back = self.get_srok(description_full[1])
+            if ((day_back <= fd) & (day_back != 0)):
                 name_vakancy = self.get_h3(x) or "--"
                 _kategory = self.get_kategory(x) or kategory
                 price = self.get_price(x) or "--"
@@ -158,13 +159,14 @@ class MyUniParser:
                     'Дата размещения': description_full[1],
                 }
 
-                print(163, sys.getsizeof(description_full[0]))
+                #print(163, sys.getsizeof(description_full[0]))
                 list_vacancy.append(payload)
                 res = self.send_message_to_telegram(self.chat_id, self.bot_token, payload, db)
                 #self.write_to_csv(payload)
                 payload['link_vakancy'] = link_vakancy
                 payload['message_id'] = res
-                if len(list_vacancy) == max_count: return list_vacancy
+                if ((len(list_vacancy) == max_count) | ((day_back - max_count) == 2)):
+                    return list_vacancy
         #return  list_vacancy
 
     def write_to_csv(self, data):        #print (data)
@@ -177,7 +179,7 @@ class MyUniParser:
         #Проверяем на дублирование
         res = crud.vakancy.get_col(db, message_dict["ID вакансии"])
         if res:
-            print(177, res.__getattribute__("price"))    
+            print(177, res.__getattribute__("ID вакансии"))    
             return 1
         # Формируем текст сообщения из словаря
         message_text = "\n".join([f"{key}:\n {value}\n" for key, value in message_dict.items()])
