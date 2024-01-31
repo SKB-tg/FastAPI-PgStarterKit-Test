@@ -218,7 +218,7 @@ class MyUniParser:
 
     @staticmethod
     @try_except
-    def get_id(link):
+    def get_id(link) -> int:
         return str(link).split('vacancy/')[1].split('?')[0]
 
     @staticmethod  
