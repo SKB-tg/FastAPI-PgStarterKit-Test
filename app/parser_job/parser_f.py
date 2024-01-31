@@ -165,9 +165,9 @@ class MyUniParser:
                 #self.write_to_csv(payload)
                 payload['link_vakancy'] = link_vakancy
                 payload['message_id'] = res
-                if ((len(list_vacancy) == max_count) | ((day_back - max_count) >= 2)):
+                if ((len(list_vacancy) == max_count) | ((day_back - max_count) > 2)):
                     return list_vacancy
-            if (day_back - max_count) >= 2:
+            if (day_back - max_count) > 2:
                 return list_vacancy
     def write_to_csv(self, data):        #print (data)
 
