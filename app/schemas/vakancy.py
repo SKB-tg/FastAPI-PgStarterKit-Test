@@ -15,7 +15,8 @@ class VakancyBase(BaseModel):
     description_short: str = "--"
     description_full: str = "--"
     date_publikate: str = "--"
-
+    mess_id: int = 1
+    
 # Properties to receive on item creation
 class VakancyCreate(VakancyBase):
     pass
