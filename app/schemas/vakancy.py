@@ -61,7 +61,7 @@ class VakancyExt(BaseModel):
     price: str | None = "--"
     description_short: str | None = "--"
     date_publikate: str | None = "--"
-    owner_id: int | None = 1
+    link: str | None = "1"
 
     # @field_serializer("id_vakancy")
     # def serialize_message(self, id_vakancy: int | str, _info):
