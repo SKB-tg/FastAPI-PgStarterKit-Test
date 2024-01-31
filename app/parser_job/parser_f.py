@@ -132,7 +132,7 @@ class MyUniParser:
         nom = 0 + 50*(x-1)
         list_vacancy = []
         for x in item_home_page_vacancy:
-            #description_full = ["NON", "NON"]
+            k = 0
             payload = {}
             link_vakancy = self.get_link(x)
             description_full = self.get_description_full(link_vakancy)
@@ -165,10 +165,13 @@ class MyUniParser:
                 #self.write_to_csv(payload)
                 payload['link_vakancy'] = link_vakancy
                 payload['message_id'] = res
-                if ((len(list_vacancy) == max_count) | ((day_back - max_count) > 2)):
+                if ((len(list_vacancy) == max_count):
                     return list_vacancy
-            if (day_back - max_count) > 2:
-                return list_vacancy
+            if (day_back - max_count) >= 2:
+                k += 1
+                if k > 5:
+                    return list_vacancy
+            
     def write_to_csv(self, data):        #print (data)
 
         CsvHandler_W(self.filename, data, f_creat=False)
