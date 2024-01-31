@@ -148,7 +148,7 @@ class MyUniParser:
                 nom += 1
                 payload = {
                     '№': f'00{nom}',
-                    'ID вакансии': id_v,
+                    'ID вакансии': int(id_v),
                     'категории': _kategory,
                     'Наименование vakancy': name_vakancy,
                     'Компания': hanter,
