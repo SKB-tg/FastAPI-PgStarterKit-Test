@@ -131,8 +131,8 @@ class MyUniParser:
         item_home_page_vacancy = soup.find_all('div', attrs={'class': 'vacancy-serp-item__layout'})
         nom = 0 + 50*(x-1)
         list_vacancy = []
-        k =0
         for x in item_home_page_vacancy:
+            k=0
             payload = {}
             link_vakancy = self.get_link(x)
             description_full = self.get_description_full(link_vakancy)
@@ -159,35 +159,36 @@ class MyUniParser:
                     'Дата размещения': description_full[1],
                 }
 
-                #print(163, sys.getsizeof(description_full[0]))
-                list_vacancy.append(payload)
-                res = self.send_message_to_telegram(self.chat_id, self.bot_token, payload, db)
+                res = crud.vakancy.get_col(db, payload["ID вакансии"])
+                print(164, res.__dict__)
+                if payload != res:
+                    resul = self.send_message_to_telegram(self.chat_id, self.bot_token, payload)
                 #self.write_to_csv(payload)
                 payload['link_vakancy'] = link_vakancy
-                payload['message_id'] = res
+                payload['message_id'] = res.mess_id or resul['message_id']
+                list_vacancy.append(payload)
+
                 if len(list_vacancy) == max_count:
-                    return list_vacancy
+                    print(172, link_vakancy)
+                    return link_vakancy
             if (day_back - max_count) >= 2:
                 k += 1
                 if k > 5:
                     return list_vacancy
-            
+
     def write_to_csv(self, data):        #print (data)
 
         CsvHandler_W(self.filename, data, f_creat=False)
 
-    def send_message_to_telegram(self, chat_id, token, message_dict,  db):
+    def send_message_to_telegram(self, chat_id, token, message_dict):
         message_dict.pop('link_vakancy')
         message_dict.pop("№")
         #Проверяем на дублирование
-        res = crud.vakancy.get_col(db, message_dict["ID вакансии"])
-        if res:
-            print(177, res.id_vakancy)    
-            return 1
+
         # Формируем текст сообщения из словаря
         message_text = "\n".join([f"{key}:\n {value}\n" for key, value in message_dict.items()])
         message_text = f"Последние обновления по вакансиям\n\n" + message_text
-        print(message_text, token, chat_id)
+        print(message_text, chat_id)
         # Отправляем запрос на API Telegram с помощью библиотеки requests
         url = f"https://api.telegram.org/bot{token}/sendmessage"
         payload = {"chat_id": chat_id, "text": message_text}
