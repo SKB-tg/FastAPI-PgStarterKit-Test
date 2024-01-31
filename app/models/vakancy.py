@@ -20,5 +20,6 @@ class Vakancy(Base):
 	description_short = Column(String)
 	description_full = Column(Text)
 	date_publikate = Column(String)
+	mess_id = Column(Integer)
 	owner_id = Column(Integer, ForeignKey("user.id"))
 	owner = relationship("User", back_populates="vakancies")
