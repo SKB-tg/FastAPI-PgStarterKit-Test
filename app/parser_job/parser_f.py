@@ -160,10 +160,10 @@ class MyUniParser:
                 }
 
                 res = crud.vakancy.get_col(db, payload["ID вакансии"])
-                if res == None:
-                    resul = self.send_message_to_telegram(self.chat_id, self.bot_token, payload)
-                else:
+                if res:
                     print(164, res.mess_id)
+                else:
+                    resul = self.send_message_to_telegram(self.chat_id, self.bot_token, payload)
                 #self.write_to_csv(payload)
                 payload['link_vakancy'] = link_vakancy
                 payload['message_id'] = res.mess_id or resul['message_id']
