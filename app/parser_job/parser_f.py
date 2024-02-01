@@ -168,7 +168,7 @@ class MyUniParser:
                     payload['message_id'] = resul
                     print(169, resul)
                 #self.write_to_csv(payload)
-                payload['link_vakancy'] = link_vakancy
+                #payload['link_vakancy'] = link_vakancy
                 list_vacancy.append(payload)
 
                 if len(list_vacancy) == max_count:
