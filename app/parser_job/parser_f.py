@@ -131,8 +131,8 @@ class MyUniParser:
         item_home_page_vacancy = soup.find_all('div', attrs={'class': 'vacancy-serp-item__layout'})
         nom = 0 + 50*(x-1)
         list_vacancy = []
+        k=0
         for x in item_home_page_vacancy:
-            k=0
             payload = {}
             link_vakancy = self.get_link(x)
             description_full = self.get_description_full(link_vakancy)
@@ -171,8 +171,8 @@ class MyUniParser:
                 list_vacancy.append(payload)
 
                 if len(list_vacancy) == max_count:
-                    print(172, link_vakancy)
-                    return link_vakancy
+                    print(172, nom, link_vakancy)
+                    return list_vacancy
             if (day_back - max_count) >= 2:
                 k += 1
                 if k > 5:
