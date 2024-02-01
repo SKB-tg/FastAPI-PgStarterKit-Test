@@ -166,6 +166,7 @@ class MyUniParser:
                 else:
                     resul = self.send_message_to_telegram(self.chat_id, self.bot_token, payload)
                     payload['message_id'] = resul
+                    print(169, resul)
                 #self.write_to_csv(payload)
                 payload['link_vakancy'] = link_vakancy
                 list_vacancy.append(payload)
