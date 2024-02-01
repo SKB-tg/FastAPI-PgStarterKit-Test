@@ -80,7 +80,7 @@ def parse_data_vacancy(db: Session, owner_id: int, data: ParserData = parser_dat
 			#resul = crud.vakancy.update(db, db_obj=resu, obj_in=item_in)
 			# print(77, resu.__dict__)
 			#item_out = crud.vakancy.convert_schemas_to_model(item_in)
-			#resu.update["mes_id"]
+			resu.mess_id = v['message_id']
 			list_item_out.append(resu)
 		else:
 			res = crud.vakancy.create_with_owner(db, obj_in=item_in, owner_id=owner_id)
