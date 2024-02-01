@@ -172,7 +172,7 @@ class MyUniParser:
                 list_vacancy.append(payload)
 
                 if len(list_vacancy) == max_count:
-                    print(172, nom, link_vakancy)
+                    print(172, nom, list_vakancy)
                     return list_vacancy
             if (day_back - max_count) >= 2:
                 k += 1
@@ -184,12 +184,12 @@ class MyUniParser:
         CsvHandler_W(self.filename, data, f_creat=False)
 
     def send_message_to_telegram(self, chat_id, token, message_dict):
-        message_dict.pop('link_vakancy')
+        #message_dict.pop('link_vakancy')
         message_dict.pop("№")
         #Проверяем на дублирование
 
         # Формируем текст сообщения из словаря
-        message_text = "\n".join([f"{key}:\n {value}\n" for key, value in message_dict.items()])
+        message_text = "\n".join([f"{key}:\n {value}\n" for key, value in message_dict.items() if key != "link_vakancy"])
         message_text = f"Последние обновления по вакансиям\n\n" + message_text
         print(message_text, chat_id)
         # Отправляем запрос на API Telegram с помощью библиотеки requests
