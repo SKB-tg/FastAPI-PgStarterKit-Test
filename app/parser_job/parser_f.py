@@ -130,7 +130,7 @@ class MyUniParser:
         soup = BeautifulSoup(markup, 'html5lib')
         item_home_page_vacancy = soup.find_all('div', attrs={'class': 'vacancy-serp-item__layout'})
         nom = 0 + 50*(x-1)
-        list_vacancy = []
+        list_vakancy = []
         k=0
         for x in item_home_page_vacancy:
             payload = {}
@@ -169,15 +169,15 @@ class MyUniParser:
                     print(169, resul)
                 #self.write_to_csv(payload)
                 #payload['link_vakancy'] = link_vakancy
-                list_vacancy.append(payload)
+                list_vakancy.append(payload)
 
-                if len(list_vacancy) == max_count:
+                if len(list_vakancy) == max_count:
                     print(172, nom, list_vakancy)
-                    return list_vacancy
+                    return list_vakancy
             if (day_back - max_count) >= 2:
                 k += 1
                 if k > 5:
-                    return list_vacancy
+                    return list_vakancy
 
     def write_to_csv(self, data):        #print (data)
 
