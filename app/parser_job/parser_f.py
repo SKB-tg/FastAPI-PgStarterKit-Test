@@ -45,11 +45,11 @@ class MyUniParser:
             driver.get(url)
 
             print('oo')
-            time.sleep(5)
+            time.sleep(2)
             html = driver.page_source########## копируем код страницу в перем 
         except Exception as ex:
             print(ex)
-            time.sleep(5)
+            time.sleep(3)
             html = None
         finally:
             driver.close()
@@ -68,7 +68,7 @@ class MyUniParser:
         try:
             driver.get(url)
             print('oooooo')
-            time.sleep(5)
+            time.sleep(2)
             html = driver.page_source
         except Exception as ex:
             print(ex)
@@ -118,7 +118,7 @@ class MyUniParser:
             response = requests.get(url1, headers=headers)#, proxies=proxies)
             #response = requests.get(url)
             response.raise_for_status()
-            time.sleep(5)
+            time.sleep(2)
             return response.text  # Raise an error if the status code is not 2xx
         except requests.exceptions.RequestException as e:
             print("Failed to fetch the Gumroad site:")
@@ -134,7 +134,7 @@ class MyUniParser:
         k=0
         for x in item_home_page_vacancy:
             payload = {}
-            link_vakancy = self.get_link(x)
+            link_vakancy = self.get_link(x)[:34] if self.get_link(x)[8] == "r" else self.get_link(x)[:30]
             description_full = self.get_description_full(link_vakancy)
             day_back = self.get_srok(description_full[1])
             if ((day_back <= fd) & (day_back != 0)):
@@ -174,7 +174,7 @@ class MyUniParser:
                 if len(list_vakancy) == max_count:
                     print(172, nom, list_vakancy)
                     return list_vakancy
-            if (day_back - max_count) >= 2:
+            if (day_back - fd) >= 2:
                 k += 1
                 if k > 5:
                     return list_vakancy
