@@ -199,7 +199,7 @@ class MyUniParser:
             response = requests.post(url, data=payload)
             data1 = json.loads(response.text)['result']
             print(186, data1)
-            if response.status_code == 200:
+            if response.status_code < 300:
                 return data1['message_id']
         except Exception as e:
             print(e)
