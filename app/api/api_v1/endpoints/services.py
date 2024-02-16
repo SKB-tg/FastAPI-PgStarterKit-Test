@@ -26,8 +26,8 @@ async def quere_new_vakamcy(
         #data_enc = jsonable_encoder(data_out)
         #print(28, data_out.kategory, data_out.name, data_out.id_vakancy, data_out.company,
          #   data_out.price, data_out.description_short)
-        if data == None:
-            return {"msg": "None html"}
+        if data_out == None:
+            return []
     except exceptions.ResponseValidationError as error:
         return JSONResponse(status_code=error.status_code, content={"detail": error.detail})
     return data_out
