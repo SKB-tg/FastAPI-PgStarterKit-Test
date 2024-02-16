@@ -272,7 +272,7 @@ class MyUniParser:
 
     @staticmethod
     def get_description_full(link_vakancy) -> List:
-        html_vacancy = MyUniParser().get_requests_html(link_vakancy)
+        html_vacancy = MyUniParser().get_requests_html(link_vakancy) or ""
         soup = BeautifulSoup(html_vacancy, 'html5lib')
         try:
             box_text = soup.find('div', attrs={'class': 'vacancy-description'}).get_text().strip().replace('\\n\\n\\n', ' ')
