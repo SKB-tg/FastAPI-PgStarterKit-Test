@@ -119,6 +119,7 @@ class MyUniParser:
             #response = requests.get(url)
             response.raise_for_status()
             #time.sleep(2)
+            print(122, response.status_code)
             return response.text  # Raise an error if the status code is not 2xx
         except requests.exceptions.RequestException as e:
             print("Failed to fetch the Gumroad site:")
