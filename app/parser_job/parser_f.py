@@ -88,6 +88,7 @@ class MyUniParser:
         if str(url)[8] == "r":
             url1 = url[:17] + ':' + port + url[17:]
         else:
+            return None
             url1 = url[:13] + ':' + port + url[13:]
         try:
             # Send an HTTP request to the provided URL
