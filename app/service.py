@@ -86,8 +86,8 @@ def parse_data_vacancy(db: Session, owner_id: int, data: ParserData = parser_dat
 			res = crud.vakancy.create_with_owner(db, obj_in=item_in, owner_id=owner_id)
 			#res.link = message_id
 			print(87, res.__dict__)
-	
 			list_item_out.append(res)
+	print(97, list_item_out)
 	return list_item_out
 
 
