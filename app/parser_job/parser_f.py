@@ -188,8 +188,7 @@ class MyUniParser:
     def send_message_to_telegram(self, chat_id, token, message_dict):
         #message_dict.pop('link_vakancy')
         message_dict.pop("№")
-        message_dict["#категории"] = message_dict["категории"]
-        message_dict.pop("категории")
+        message_dict["категории"] = f"#{message_dict['категории']}"
         #Проверяем на дублирование
 
         # Формируем текст сообщения из словаря
