@@ -165,7 +165,7 @@ class MyUniParser:
                 if res:
                     print(164, res.mess_id, res.id_vakancy)
                     payload['message_id'] = res.mess_id
-                elif res.mess_id == 1:
+                elif payload['message_id'] == 1:
                     resul = self.send_message_to_telegram(self.chat_id, self.bot_token, payload)
                     payload['message_id'] = resul
                     print(169, resul)
