@@ -198,7 +198,7 @@ class MyUniParser:
         # Формируем текст сообщения из словаря
         message_text = "\n".join([f"{key}:\n {value}\n" for key, value in message_dict.items() if key != "link_vakancy"])
         message_text = f"Последние обновления по вакансиям\n\n" + message_text
-        print(message_text, chat_id)
+        print(200, message_text, chat_id)
         # Отправляем запрос на API Telegram с помощью библиотеки requests
         url = f"https://api.telegram.org/bot{token}/sendmessage"
         payload = {"chat_id": chat_id, "text": message_text}
