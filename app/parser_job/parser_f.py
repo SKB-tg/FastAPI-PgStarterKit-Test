@@ -85,7 +85,7 @@ class MyUniParser:
         # from requests_html_playwright import HTMLSession
         # session = HTMLSession()
         print(url)
-        if str(url)[8] == "r":
+        if str(url)[8:9] == "r":
             url1 = url[:17] + ':' + port + url[17:]
         else:
             return None
