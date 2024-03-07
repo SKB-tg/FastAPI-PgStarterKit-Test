@@ -272,7 +272,7 @@ class MyUniParser:
         if date_str_in == None:
             return 0
         else:
-            date_str=f"{p1[2]}-{p[0]}-{p1[0]}"
+            date_str=f"{p1[2:3]}-{p[0:1]}-{p1[0:1]}"
             d = get_date_flag(date_str)
             print(d)
             return d
